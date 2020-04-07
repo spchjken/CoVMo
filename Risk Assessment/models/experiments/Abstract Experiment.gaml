@@ -10,6 +10,7 @@ import "../Global.gaml"
 
 global {
 	font default <- font("Helvetica", 20, #bold);
+	font info <- font("Helvetica", 14, #bold);
 	rgb text_color <- world.color.brighter.brighter;
 	rgb background <- world.color.darker.darker;
 }
@@ -56,7 +57,7 @@ experiment AbstractExp virtual: true {
 						 str<-under_mouse_agent.VARNAME_3;
 					}
 					str<-str+": "+length(under_mouse_agent.detected_cases_F0);
-					draw str at:target empty: false font: default border: false color: #black;
+					draw str at:target empty: false font: info border: false color: #yellow;
 				}
 
 			}
