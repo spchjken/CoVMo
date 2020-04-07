@@ -67,9 +67,13 @@ species AdministrativeBound parent: EpidemiologicHost {
 
 	aspect default {
 	//		draw shape color: I>0?#red:#white border: #black;
-		draw shape color: #white empty: true border: #black;
-		if (length(detected_cases_F0) > 0) {
-			draw circle(length(detected_cases_F0) #km /10 ) color: #red;
+		draw shape color: #white empty: true border: #darkgray;
+		int d<-length(detected_cases_F0);
+		if (d> 0) {
+			draw circle( (d <10? (d*2)#km:20#km)*((world.shape.perimeter)/2000000)   ) color: #red;
+//			draw circle( (d <10? (d*2)#km:20#km)*((world.shape.perimeter)/2000000)   ) color: #yellow;
+//			draw arc((d <10? (d*2)#km:20#km)*((world.shape.perimeter)/2000000),0,180,true) color: #red;
+//			draw arc((d <10? (d*2)#km:20#km)*((world.shape.perimeter)/2000000),180,180,true)   color: #yellow;
 //			if (#zoom > 1.1) {
 //				draw NAME_3 at: location color: #black;
 //			}

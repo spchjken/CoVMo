@@ -12,6 +12,16 @@ import "Constants.gaml"
 import "species/AdministrativeBound.gaml"
 global {
 
+	// xac dinh moi buoc bang 15 phut
+	float step <- 15 #minute;
+
+	//thoi gian khoi dau mo hinh
+	date starting_date <- date([2020, 3, 2, 0, 0]);
+
+	// thoi gian virus ton tai va gay nguy hiem o khu vuc benh nhan di qua (tinh theo gio)
+	int v_time_life <- 24;
+	bool do_init <- false;
+	float _size<-world.shape.perimeter/10000;
 //	shape_file provinces_shp_file <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_1.shp");
 //	shape_file provinces_shp_file <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_2.shp");
 	shape_file provinces_shp_file <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_3.shp");
@@ -56,5 +66,8 @@ global {
 	map<string,list<AdministrativeBound>> map_adm_3;// <- AdministrativeBound group_by (each.VARNAME_2+" "+each.VARNAME_3);
 	
 	
-	float _size<-world.shape.perimeter/10000;
+	point target;	
+	geometry zone <- circle(1#m);
+	AdministrativeBound under_mouse_agent;
+	
 }

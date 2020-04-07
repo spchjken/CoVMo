@@ -25,9 +25,9 @@ experiment "Show 4 zones" type: gui parent:AbstractExp{
 	
 //		layout horizontal([horizontal([0::5000, 1::5000])::5000, vertical([horizontal([2::5000, 3::5000])::5000, horizontal([4::5000, 5::5000])::5000])::5000]) consoles: false editors:
 //		false navigator: false tray: false tabs: true toolbars: false;
-		display "Detected" parent: default_display synchronized:true{
+		display "Detected" parent: default_display synchronized:false{
 		}
-		display "Risky" parent: default_display_risk synchronized:true {
+		display "Risky" parent: default_display_risk synchronized:false {
 		}
 	}
 

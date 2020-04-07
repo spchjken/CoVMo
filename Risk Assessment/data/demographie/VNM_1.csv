@@ -1,0 +1,31 @@
+City,district,extern,foreigner,moving,high_contact,low_contact,social_distancing,traffic_in,emphasize
+Vietnam,Hanoi,100,100,100,100,100,100,0,100
+Vietnam,Ho Chi Minh,100,100,100,100,100,100,0,100
+Vietnam,Ninh Binh,60,100,100,100,60,100,0,60
+Vietnam,Vinh Phuc,60,60,60,100,100,100,0,100
+Vietnam,Binh Thuan,60,60,60,100,100,100,0,100
+Vietnam,Quang Ninh,100,100,100,100,60,100,0,100
+Vietnam,Da Nang,100,100,100,100,100,100,0,100
+Vietnam,Dong Thap,30,30,30,30,30,100,30,60
+Vietnam,Bac Lieu,60,30,30,30,30,100,30,30
+Vietnam,Ha Tinh,60,30,30,30,30,100,60,60
+Vietnam,Tra Vinh,30,30,30,30,30,100,30,30
+Vietnam,Quang Nam,100,100,60,60,60,100,60,60
+Vietnam,Thanh Hoa,60,60,60,60,60,100,60,100
+Vietnam,Thua Thien Hue,100,100,60,60,60,100,60,60
+Vietnam,Lao Cai,100,100,100,60,60,100,100,0
+Vietnam,Can Tho,100,100,100,100,60,100,60,60
+Vietnam,Ninh Thuan,30,30,30,30,30,100,60,30
+Vietnam,Tay Ninh,30,30,30,30,30,100,30,30
+Vietnam,Thai Nguyen,60,100,60,60,60,100,60,60
+Vietnam,Bac Ninh,60,100,60,60,60,100,60,60
+Vietnam,Ben Tre,30,30,30,30,30,100,30,30
+Vietnam,Ha Nam,60,30,60,60,30,100,60,30
+Vietnam,Lai Chau,30,30,30,30,30,100,30,30
+Vietnam,Hai Duong,60,60,60,60,30,100,60,60
+Vietnam,Khanh Hoa,100,100,100,60,60,100,60,0
+Vietnam,Ha Giang,60,60,60,30,30,100,60,100
+Vietnam,Cao Bang,60,60,60,30,30,100,60,100
+Vietnam,Lang Son,60,100,60,30,30,100,60,100
+Vietnam,Bac Giang,60,60,60,30,30,100,60,30
+Vietnam,Thai Binh,60,60,60,30,30,100,60,30

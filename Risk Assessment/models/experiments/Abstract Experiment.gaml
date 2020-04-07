@@ -37,6 +37,29 @@ experiment AbstractExp virtual: true {
 			}
 
 			species AdministrativeBound aspect: default;
+			event mouse_move action: move;
+			
+			graphics "Info" 
+			{
+				if (under_mouse_agent!=nil)
+				{
+					string str;
+					if(length(GIS_id)=5){
+						 str<-under_mouse_agent.VARNAME_1;
+					}
+					if(length(GIS_id)=8){
+						
+						 str<-under_mouse_agent.VARNAME_2;
+					}
+					if(length(GIS_id)=11){
+						
+						 str<-under_mouse_agent.VARNAME_3;
+					}
+					str<-str+": "+length(under_mouse_agent.detected_cases_F0);
+					draw str at:target empty: false font: default border: false color: #black;
+				}
+
+			}
 		}
 
 		display "default_display_risk" synchronized: false background: background virtual: true draw_env: false {

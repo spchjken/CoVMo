@@ -17,7 +17,7 @@ experiment Pandemic2020 type: gui parent: AbstractExp {
 //		string GIS_id <- "VNM.27.16_1";
 		int index <- -1;
 		string question <- "Chọn vùng :\n 0 - Việt Nam \n 1 - Hà Nội \n 2 - Long Biên \n 3 - Hổ Chí Minh";
-		index <- 0;//int(user_input(question, ["Your choice"::2])["Your choice"]);
+		index <- int(user_input(question, ["Your choice"::2])["Your choice"]);
 		string filepath <- "../../includes/gadm36_VNM_shp/generated/" + lst_GIS_id[index] + ".shp";
 		if (!file_exists(filepath)) {
 			write "generate sub_shp";
@@ -44,7 +44,29 @@ experiment Pandemic2020 type: gui parent: AbstractExp {
 	output {
 		layout #split consoles: false editors: false navigator: false tray: false tabs: false toolbars: false;
 		display "Detected" parent: default_display {
+			
 		}
+//		display "Detected" synchronized: false background: background  draw_env: false {
+//			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
+//			overlay position: {100, 0} size: {700 #px, 200 #px} transparency: 0 {
+//				draw (""+map_GIS_name[GIS_id] + " | Infected") font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
+//				draw (""+current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
+//			}
+//
+//			species AdministrativeBound aspect: default;
+//			
+//			event mouse_move action: move;
+//			
+//			graphics "Info" 
+//			{
+//				if (under_mouse_agent!=nil)
+//				{
+//					string str<-under_mouse_agent.VARNAME_1+","+under_mouse_agent.VARNAME_2+","+under_mouse_agent.VARNAME_3+"\n"+length(under_mouse_agent.detected_cases_F0);
+//					draw str at:target empty: false border: false color: #wheat;
+//				}
+//
+//			}
+//		}
 
 		display "Risky" parent: default_display_risk {
 		}
