@@ -42,13 +42,10 @@ species AdministrativeBound parent: EpidemiologicHost {
 	}
 
 	float get_risk_social { 
-		return p_F0F1 * ((length(detected_cases_F0) + F1)/map_nb_increase[length(GIS_id)]) + p_extern * (extern) + p_foreigner * (foreigner) + p_moving * (moving);
+		return p_F0F1 * ((length(detected_cases_F0) + F1)) + p_extern * (extern) + p_foreigner * (foreigner) + p_moving * (moving);
 	}
 
 	float get_risk_contact {
-		write  p_high_contact * high_contact ;
-		write p_low_contact * low_contact;
-		
 		return p_high_contact * high_contact + p_low_contact * low_contact;
 	}
 

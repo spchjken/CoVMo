@@ -11,7 +11,6 @@ model Parameters
 import "Constants.gaml"
 import "species/AdministrativeBound.gaml"
 global {
-	float max_of_risk_point<-0.0;
 	// xac dinh moi buoc bang 15 phut
 	float step <- 15 #minute;
 
@@ -62,6 +61,7 @@ global {
 	
 	 
 //	float max_risk_point ->{AdministrativeBound max_of each.risk_point};
+	map<string,list<AdministrativeBound>> map_adm_1;// <- AdministrativeBound group_by (each.VARNAME_1);
 	map<string,list<AdministrativeBound>> map_adm_2;// <- AdministrativeBound group_by (each.VARNAME_2);
 	map<string,list<AdministrativeBound>> map_adm_3;// <- AdministrativeBound group_by (each.VARNAME_2+" "+each.VARNAME_3);
 	

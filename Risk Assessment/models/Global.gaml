@@ -38,6 +38,7 @@ global {
 			neighbors <- (AdministrativeBound where (each touches self)) - self;
 		}
 
+		map_adm_1 <- AdministrativeBound group_by (each.VARNAME_1);
 		map_adm_2 <- AdministrativeBound group_by (each.VARNAME_2);
 		map_adm_3 <- AdministrativeBound group_by ("" + each.VARNAME_2 + " " + each.VARNAME_3);
 	}
@@ -253,7 +254,7 @@ global {
 		//			write data;
 			loop i from: 0 to: data.rows - 1 {
 			//				write "" + data[0, i] + " " + data[1, i];
-				ask AdministrativeBound where (each.VARNAME_1=data[1,i]) {
+				ask map_adm_1["" + data[1, i]] {
 					extern <- int(data[2, i]);
 					foreigner <- int(data[3, i]);
 					moving <- int(data[4, i]);

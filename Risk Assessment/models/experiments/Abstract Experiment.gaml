@@ -70,12 +70,8 @@ experiment AbstractExp virtual: true {
 			species AdministrativeBound aspect: risky position: {0, 0, 0.002}; //transparency: 0.5;
 			//			event mouse_move action: move;
 			overlay position: {100, 0} size: {700 #px, 200 #px} transparency: 0 {
-				if (max_of_risk_point < AdministrativeBound max_of each.risk_point) {
-					max_of_risk_point <- AdministrativeBound max_of each.risk_point;
-				}
-
 				draw ("" + map_GIS_name[GIS_id] + " | Risky") font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
-				draw ("" + current_date) + " " + int(max_of_risk_point) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
+				draw ("" + current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
 			}
 
 			graphics "Info" position: {0, 0, 0.004} {
@@ -93,8 +89,8 @@ experiment AbstractExp virtual: true {
 						str <- under_mouse_agent.VARNAME_3;
 					}
 
-					str <- str + ": " + (under_mouse_agent.risk_point);
-					draw str at: {target.x-(length(str)*20),target.y} empty: false font: info border: false color: #red;
+					str <- str + ": " + int(under_mouse_agent.risk_point);
+					draw str at: {target.x-(length(str)*20),target.y} empty: false font: info border: false color: #yellow;
 				}
 
 			}
