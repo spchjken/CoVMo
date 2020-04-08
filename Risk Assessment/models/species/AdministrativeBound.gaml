@@ -21,7 +21,7 @@ species AdministrativeBound parent: EpidemiologicHost {
 	string VARNAME_3;
 	list<AdministrativeBound> neighbors <- [];
 	list<DetectedCase> detected_cases_F0 <- [];
-	int F1 -> {int(10 * length(detected_cases_F0))};
+	int F1 -> {int(20 * length(detected_cases_F0))};
 	int extern;
 	int foreigner;
 	int moving;
@@ -35,8 +35,7 @@ species AdministrativeBound parent: EpidemiologicHost {
 	float risk_contact;
 	float risk_policy;
 	//	rgb mycolor -> {hsb(0, (risk_assessment_point > 25 ? 0.1 : 0) + (I > 25 ? 25 : I) / 29, 1)}; //	rgb mycolor -> {hsb(0, I/N, 1)};
-	rgb my_risk_color -> {hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / (AdministrativeBound max_of each.risk_point)) < 0.95 ? (risk_point / (AdministrativeBound max_of
-	each.risk_point)) : 0.95), 1)}; //	rgb mycolor -> {hsb(0, I/N, 1)};
+	rgb my_risk_color -> {hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.95 ? (risk_point / max_risk_point) : 0.95), 1)}; //	rgb mycolor -> {hsb(0, I/N, 1)};
 	float accessment {
 		return weight_risk_social * get_risk_social() + weight_risk_contact * get_risk_contact() + weight_risk_policy * get_risk_policy();
 	}

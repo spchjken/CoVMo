@@ -74,4 +74,7 @@ global {
 	int nb_increase_size_2<-5;
 	int nb_increase_size_3<-1;
 	map<int,int> map_nb_increase<-[5::nb_increase_size_1,8::nb_increase_size_1,11::nb_increase_size_1];
+	
+	
+	float max_risk_point ->((AdministrativeBound max_of each.risk_point) <200 ? 200:(AdministrativeBound max_of each.risk_point) );
 }
