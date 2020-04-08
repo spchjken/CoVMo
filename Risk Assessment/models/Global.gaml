@@ -247,6 +247,27 @@ global {
 		file demo_csv_file <- csv_file(fpath, true);
 		matrix data <- (demo_csv_file.contents);
 		//		write GIS_id;
+		
+		
+		if (length(GIS_id) = 5) {
+		//			write data;
+			loop i from: 0 to: data.rows - 1 {
+			//				write "" + data[0, i] + " " + data[1, i];
+				ask AdministrativeBound where (each.VARNAME_1=data[1,i]) {
+					extern <- int(data[2, i]);
+					foreigner <- int(data[3, i]);
+					moving <- int(data[4, i]);
+					high_contact <- int(data[5, i]);
+					low_contact <- int(data[6, i]);
+					social_distancing <- int(data[7, i]);
+					traffic_in <- int(data[8, i]);
+					emphasize <- int(data[9, i]);
+				}
+
+			}
+
+		}
+		
 		if (length(GIS_id) = 8) {
 		//			write data;
 			loop i from: 0 to: data.rows - 1 {

@@ -46,6 +46,9 @@ species AdministrativeBound parent: EpidemiologicHost {
 	}
 
 	float get_risk_contact {
+		write  p_high_contact * high_contact ;
+		write p_low_contact * low_contact;
+		
 		return p_high_contact * high_contact + p_low_contact * low_contact;
 	}
 
