@@ -16,7 +16,7 @@ global {
 }
 
 experiment AbstractExp virtual: true {
-	float minimum_cycle_duration<-0.01;
+	float minimum_cycle_duration <- 0.01;
 	parameter "Xã hội" category: "Trọng số Tổng quan" var: weight_risk_social <- 0.35;
 	parameter "Tiếp xúc" category: "Trọng số Tổng quan" var: weight_risk_contact <- 0.3;
 	parameter "Chính sách" category: "Trọng số Tổng quan" var: weight_risk_policy <- 0.35;
@@ -24,53 +24,81 @@ experiment AbstractExp virtual: true {
 	parameter "Thành phần ngoài lề" category: "Trọng số của yếu tố Xã hội" var: p_extern <- 0.2;
 	parameter "Người nước ngoài" category: "Trọng số của yếu tố Xã hội" var: p_foreigner <- 0.3;
 	parameter "Người di chuyển nhiều" category: "Trọng số của yếu tố Xã hội" var: p_moving <- 0.2;
-	parameter "Tiếp xúc cao" category: "Trọng số của yếu tố Tiếp xúc" var: p_high_contact <- 0.6;
+	parameter "Tiếp xúc cao" category: "Trọng số của Yếu tố Tiếp xúc" var: p_high_contact <- 0.6;
 	parameter "Tiếp xúc thấp" category: "Trọng số của Yếu tố Tiếp xúc" var: p_low_contact <- 0.4;
 	parameter "Giãn cách xã hội" category: "Trọng số của yếu tố Chính sách" var: p_social_distancing <- 0.45;
 	parameter "Hạn chế dòng vào từ địa phương khác" category: "Trọng số của yếu tố Chính sách" var: p_traffic_in <- 0.35;
 	parameter "Mức độ quyết liệt trong truy tầm nguồn" category: "Trọng số của yếu tố Chính sách" var: p_emphasize <- 0.2;
+	parameter "Mức tăng cấp quốc gia" category: "Hiển thị" var: nb_increase_size_1 <- 10;
+	parameter "Mức tăng cấp thành phố" category: "Hiển thị" var: nb_increase_size_2 <- 5;
+	parameter "Mức tăng cấp quận" category: "Hiển thị" var: nb_increase_size_3 <- 1;
 	output {
 		display "default_display" synchronized: false background: background virtual: true draw_env: false {
 			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
 			overlay position: {100, 0} size: {700 #px, 200 #px} transparency: 0 {
-				draw (""+map_GIS_name[GIS_id] + " | Infected") font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
-				draw (""+current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
+				draw ("" + map_GIS_name[GIS_id] + " | Detected:"+(AdministrativeBound sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
+				draw ("" + current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
 			}
 
 			species AdministrativeBound aspect: default;
 			event mouse_move action: move;
-			
-			graphics "Info" 
-			{
-				if (under_mouse_agent!=nil)
-				{
+			graphics "Info" {
+				if (under_mouse_agent != nil) {
 					string str;
-					if(length(GIS_id)=5){
-						 str<-under_mouse_agent.VARNAME_1;
+					if (length(GIS_id) = 5) {
+						str <- under_mouse_agent.VARNAME_1;
 					}
-					if(length(GIS_id)=8){
-						
-						 str<-under_mouse_agent.VARNAME_2;
+
+					if (length(GIS_id) = 8) {
+						str <- under_mouse_agent.VARNAME_2;
 					}
-					if(length(GIS_id)=11){
-						
-						 str<-under_mouse_agent.VARNAME_3;
+
+					if (length(GIS_id) = 11) {
+						str <- under_mouse_agent.VARNAME_3;
 					}
-					str<-str+": "+length(under_mouse_agent.detected_cases_F0);
-					draw str at:target empty: false font: info border: false color: #yellow;
+
+					str <- str + ": " + length(under_mouse_agent.detected_cases_F0);
+					draw str at:  {target.x-(length(str)*20),target.y} empty: false font: info border: true color: #yellow;
 				}
 
 			}
+
 		}
 
 		display "default_display_risk" synchronized: false background: background virtual: true draw_env: false {
 			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
-			overlay position: {100, 0} size: {700 #px, 200 #px} transparency: 0 { 
-				draw (""+map_GIS_name[GIS_id] + " | Risky") font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
-				draw (""+current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
+			species AdministrativeBound aspect: risky position: {0, 0, 0.002}; //transparency: 0.5;
+			//			event mouse_move action: move;
+			overlay position: {100, 0} size: {700 #px, 200 #px} transparency: 0 {
+				if (max_of_risk_point < AdministrativeBound max_of each.risk_point) {
+					max_of_risk_point <- AdministrativeBound max_of each.risk_point;
+				}
+
+				draw ("" + map_GIS_name[GIS_id] + " | Risky") font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
+				draw ("" + current_date) + " " + int(max_of_risk_point) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
 			}
 
-			species AdministrativeBound aspect: risky transparency: 0.5;
+			graphics "Info" position: {0, 0, 0.004} {
+				if (under_mouse_agent != nil) {
+					string str;
+					if (length(GIS_id) = 5) {
+						str <- under_mouse_agent.VARNAME_1;
+					}
+
+					if (length(GIS_id) = 8) {
+						str <- under_mouse_agent.VARNAME_2;
+					}
+
+					if (length(GIS_id) = 11) {
+						str <- under_mouse_agent.VARNAME_3;
+					}
+
+					str <- str + ": " + (under_mouse_agent.risk_point);
+					draw str at: {target.x-(length(str)*20),target.y} empty: false font: info border: false color: #red;
+				}
+
+			}
+
 		}
 
 		//		display "Statistic" {

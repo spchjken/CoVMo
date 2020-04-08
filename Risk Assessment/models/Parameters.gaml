@@ -11,12 +11,12 @@ model Parameters
 import "Constants.gaml"
 import "species/AdministrativeBound.gaml"
 global {
-
+	float max_of_risk_point<-0.0;
 	// xac dinh moi buoc bang 15 phut
 	float step <- 15 #minute;
 
 	//thoi gian khoi dau mo hinh
-	date starting_date <- date([2020, 3, 2, 0, 0]);
+	date starting_date <- date([2020, 3, 1, 0, 0]);
 
 	// thoi gian virus ton tai va gay nguy hiem o khu vuc benh nhan di qua (tinh theo gio)
 	int v_time_life <- 24;
@@ -61,7 +61,7 @@ global {
 	map<string,string> map_GIS_name<-[GIS_id0::"Việt Nam",GIS_id1::"Hà Nội",GIS_id2::"Long Biên",GIS_id3::"Hồ Chí Minh"];
 	
 	 
-	float max_risk_point ->{AdministrativeBound max_of each.risk_point};
+//	float max_risk_point ->{AdministrativeBound max_of each.risk_point};
 	map<string,list<AdministrativeBound>> map_adm_2;// <- AdministrativeBound group_by (each.VARNAME_2);
 	map<string,list<AdministrativeBound>> map_adm_3;// <- AdministrativeBound group_by (each.VARNAME_2+" "+each.VARNAME_3);
 	
@@ -70,4 +70,8 @@ global {
 	geometry zone <- circle(1#m);
 	AdministrativeBound under_mouse_agent;
 	
+	int nb_increase_size_1<-10;
+	int nb_increase_size_2<-5;
+	int nb_increase_size_3<-1;
+	map<int,int> map_nb_increase<-[5::nb_increase_size_1,8::nb_increase_size_1,11::nb_increase_size_1];
 }

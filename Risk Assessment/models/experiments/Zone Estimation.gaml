@@ -17,7 +17,7 @@ experiment Pandemic2020 type: gui parent: AbstractExp {
 //		string GIS_id <- "VNM.27.16_1";
 		int index <- -1;
 		string question <- "Chọn vùng :\n 0 - Việt Nam \n 1 - Hà Nội \n 2 - Long Biên \n 3 - Hổ Chí Minh";
-		index <- int(user_input(question, ["Your choice"::2])["Your choice"]);
+		index <- 0;//int(user_input(question, ["Your choice"::2])["Your choice"]);
 		string filepath <- "../../includes/gadm36_VNM_shp/generated/" + lst_GIS_id[index] + ".shp";
 		if (!file_exists(filepath)) {
 			write "generate sub_shp";
