@@ -43,7 +43,7 @@ experiment Pandemic2020 type: gui parent: AbstractExp {
 
 	output {
 		layout #split consoles: false editors: false navigator: false tray: false tabs: false toolbars: false;
-		display "Detected" parent: default_display {
+		display "Mixed" parent: default_mixed_display {
 			
 		}
 //		display "Detected" synchronized: false background: background  draw_env: false {
@@ -68,8 +68,8 @@ experiment Pandemic2020 type: gui parent: AbstractExp {
 //			}
 //		}
 
-		display "Risky" parent: default_display_risk {
-		}
+//		display "Risky" parent: default_display_risk {
+//		}
 
 	}
 

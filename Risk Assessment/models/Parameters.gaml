@@ -30,7 +30,7 @@ global {
 	
 	
 	bool show_ranking<-true;
-	int nb_ranking_list <- 5;
+	int nb_ranking_list <- 10;
 	file a_file <- folder("../../results/");
 	bool a_boolean_to_disable_parameters <- true;
 	

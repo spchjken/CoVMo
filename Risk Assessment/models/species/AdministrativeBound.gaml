@@ -43,7 +43,7 @@ species AdministrativeBound parent: EpidemiologicHost {
 		return weight_risk_social * get_risk_social() + weight_risk_contact * get_risk_contact() + weight_risk_policy * get_risk_policy();
 	}
 
-	float get_risk_social { 
+	float get_risk_social {
 		return p_F0F1 * ((length(detected_cases_F0) + F1)) + p_extern * (extern) + p_foreigner * (foreigner) + p_moving * (moving);
 	}
 
@@ -53,8 +53,8 @@ species AdministrativeBound parent: EpidemiologicHost {
 
 	float get_risk_policy {
 		return p_social_distancing * social_distancing + p_traffic_in * traffic_in + p_emphasize * emphasize;
-	} 
-	
+	}
+
 	aspect risky {
 	//		if(accessment()>0){			
 		draw shape color: my_risk_color border: #black;
@@ -92,6 +92,26 @@ species AdministrativeBound parent: EpidemiologicHost {
 			//			if (#zoom > 1.1) {
 			//				draw NAME_3 at: location color: #black;
 			//			}
+
+		}
+
+	}
+
+	aspect mixed {
+	// 		draw shape color: #white empty: true border: #darkgray;
+		draw shape color: my_risk_color border: #black;
+		if (length(detected_cases_F0) > 0) {
+			if (length(GIS_id) = 5) {
+				draw circle(size_of_circle_1) color: #red border: #yellow;
+			}
+
+			if (length(GIS_id) = 8) {
+				draw circle(size_of_circle_2) color: #red border: #yellow;
+			}
+
+			if (length(GIS_id) = 11) {
+				draw circle(size_of_circle_3) color: #red border: #yellow;
+			}
 
 		}
 
