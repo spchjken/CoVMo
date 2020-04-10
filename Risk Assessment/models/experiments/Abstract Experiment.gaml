@@ -53,7 +53,7 @@ experiment AbstractExp virtual: true {
 					list<AdministrativeBound> candi<-AdministrativeBound sort_by (-each.risk_point);
 					loop i from:0 to:nb_ranking_list-1{
 						y<-y+20;
-						draw ("" +candi[i].current_name+" \t "+ int(candi[i].risk_point)) font: info at: {20 #px, y #px} anchor: #top_left color: text_color;
+						draw (""+(i+1) +" . "+candi[i].current_name) font: info at: {20 #px, y #px} anchor: #top_left color: text_color;
 					}
 				}
 			}
