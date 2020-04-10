@@ -29,6 +29,11 @@ global {
 	geometry shape <- envelope(provinces_shp_file);
 	
 	
+	bool show_ranking<-true;
+	int nb_ranking_list <- 5;
+	file a_file <- folder("../../results/");
+	bool a_boolean_to_disable_parameters <- true;
+	
 	float weight_risky_activity<-0.5;
 	float weight_risky_zone<-0.5;
 	float weight_risky_transport<-0.5;

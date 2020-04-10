@@ -34,6 +34,9 @@ species AdministrativeBound parent: EpidemiologicHost {
 	float risk_social;
 	float risk_contact;
 	float risk_policy;
+	string current_gid;
+	string current_name;
+	string current_varname;
 	//	rgb mycolor -> {hsb(0, (risk_assessment_point > 25 ? 0.1 : 0) + (I > 25 ? 25 : I) / 29, 1)}; //	rgb mycolor -> {hsb(0, I/N, 1)};
 	rgb my_risk_color -> {hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.95 ? (risk_point / max_risk_point) : 0.95), 1)}; //	rgb mycolor -> {hsb(0, I/N, 1)};
 	float accessment {
@@ -50,8 +53,8 @@ species AdministrativeBound parent: EpidemiologicHost {
 
 	float get_risk_policy {
 		return p_social_distancing * social_distancing + p_traffic_in * traffic_in + p_emphasize * emphasize;
-	}
-
+	} 
+	
 	aspect risky {
 	//		if(accessment()>0){			
 		draw shape color: my_risk_color border: #black;

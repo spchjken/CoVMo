@@ -36,6 +36,24 @@ global {
 		//							write NAME_2;
 		//							write GID_2;
 			neighbors <- (AdministrativeBound where (each touches self)) - self;
+			if (length(GIS_id) = 5) {
+				current_gid <- GID_1;
+				current_name <- NAME_1;
+				current_varname <- VARNAME_1;
+			}
+
+			if (length(GIS_id) = 8) {
+				current_gid <- GID_2;
+				current_name <- NAME_2;
+				current_varname <- VARNAME_2;
+			}
+
+			if (length(GIS_id) = 11) {
+				current_gid <- GID_3;
+				current_name <- NAME_3;
+				current_varname <- VARNAME_3;
+			}
+
 		}
 
 		map_adm_1 <- AdministrativeBound group_by (each.VARNAME_1);
@@ -59,17 +77,16 @@ global {
 			loop while: ((row_idx < statistic_cases.rows) and (d.day_of_year >= date(statistic_cases[3, row_idx]).day_of_year)) {
 				if (!(statistic_cases_added contains row_idx)) {
 					string str <- "" + (statistic_cases[0, row_idx]) + " " + (statistic_cases[1, row_idx]) + " " + (statistic_cases[2, row_idx]) + " " + date(statistic_cases[3, row_idx]);
-									write "xxxx " + row_idx + " " + str;
+					write "xxxx " + row_idx + " " + str;
 					//				ask (AdministrativeBound where (each.GID_2 = GIS_id2 and each.VARNAME_3 = statistic_cases[2, row_idx])) {
-					
 					list<AdministrativeBound> adm;
-					if(statistic_cases[2, row_idx]="" or statistic_cases[2, row_idx]="Cach y"){
-						adm<-(first(map_adm_2.values));
-					}else{
-						adm<-AdministrativeBound where (each.VARNAME_1= statistic_cases[2, row_idx]);
-						
-						}
-					ask adm  {
+					if (statistic_cases[2, row_idx] = "" or statistic_cases[2, row_idx] = "Cach y") {
+						adm <- (first(map_adm_2.values));
+					} else {
+						adm <- AdministrativeBound where (each.VARNAME_1 = statistic_cases[2, row_idx]);
+					}
+
+					ask adm {
 					//					write VARNAME_2;
 					//					infected <- true;
 						I <- I + 1;
@@ -90,21 +107,21 @@ global {
 			}
 
 		}
+
 		if (length(GIS_id) = 8) {
 			loop while: ((row_idx < statistic_cases.rows) and (d.day_of_year >= date(statistic_cases[3, row_idx]).day_of_year)) {
 				if (!(statistic_cases_added contains row_idx)) {
 					string str <- "" + (statistic_cases[0, row_idx]) + " " + (statistic_cases[1, row_idx]) + " " + (statistic_cases[2, row_idx]) + " " + date(statistic_cases[3, row_idx]);
-									write "xxxx " + row_idx + " " + str;
+					write "xxxx " + row_idx + " " + str;
 					//				ask (AdministrativeBound where (each.GID_2 = GIS_id2 and each.VARNAME_3 = statistic_cases[2, row_idx])) {
-					
 					list<AdministrativeBound> adm;
-					if(statistic_cases[2, row_idx]="" or statistic_cases[2, row_idx]="Cach y"){
-						adm<-(first(map_adm_2.values));
-					}else{
-						adm<-map_adm_2["" + statistic_cases[2, row_idx]];
-						
-						}
-					ask adm  {
+					if (statistic_cases[2, row_idx] = "" or statistic_cases[2, row_idx] = "Cach y") {
+						adm <- (first(map_adm_2.values));
+					} else {
+						adm <- map_adm_2["" + statistic_cases[2, row_idx]];
+					}
+
+					ask adm {
 					//					write VARNAME_2;
 					//					infected <- true;
 						I <- I + 1;
@@ -125,6 +142,7 @@ global {
 			}
 
 		}
+
 		if (length(GIS_id) = 11) {
 			loop while: ((row_idx < statistic_cases.rows) and (d.day_of_year >= date(statistic_cases[3, row_idx]).day_of_year)) {
 				if (!(statistic_cases_added contains row_idx)) {
@@ -248,8 +266,6 @@ global {
 		file demo_csv_file <- csv_file(fpath, true);
 		matrix data <- (demo_csv_file.contents);
 		//		write GIS_id;
-		
-		
 		if (length(GIS_id) = 5) {
 		//			write data;
 			loop i from: 0 to: data.rows - 1 {
@@ -268,7 +284,7 @@ global {
 			}
 
 		}
-		
+
 		if (length(GIS_id) = 8) {
 		//			write data;
 			loop i from: 0 to: data.rows - 1 {
@@ -307,28 +323,22 @@ global {
 		}
 
 	}
-	
-	
-	
-	action move 
-	{ 
+
+	// Action that will be called from the parameter pane
+	action writing_results {
+		string filename <- GIS_id + "_risk.csv";
+		string res <- "";
+		list<AdministrativeBound> out<-AdministrativeBound sort_by (-each.risk_point);
+		ask (AdministrativeBound sort_by (-each.risk_point)){
+			res <- res + current_name + "," + risk_point + "\n";
+		}
+		write res;
+		save data:res to: a_file.path +"/"+ filename type: "csv" header:false rewrite: true;
+	}
+
+	action move {
 		target <- #user_location;
 		under_mouse_agent <- first(AdministrativeBound overlapping (zone at_location #user_location)); 
-//		geometry occupied <- geometry(other_agents);
-//		ask moved_agents
-//		{
-//			location <- #user_location - difference;
-//			if (occupied intersects self)
-//			{
-//				color <- # red;
-//				can_drop <- false;
-//			} else
-//			{
-//				color <- # olive;
-//			}
-//
-//		}
-
 	}
 
 }

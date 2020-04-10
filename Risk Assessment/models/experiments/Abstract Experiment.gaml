@@ -11,7 +11,7 @@ import "../Global.gaml"
 global {
 	font default <- font("Helvetica", 20, #bold);
 	font info <- font("Helvetica", 14, #bold);
-	rgb text_color <- world.color.brighter.brighter;
+	rgb text_color <- world.color.brighter.brighter.brighter;
 	rgb background <- world.color.darker.darker;
 }
 
@@ -29,6 +29,13 @@ experiment AbstractExp virtual: true {
 	parameter "Giãn cách xã hội" category: "Trọng số của yếu tố Chính sách" var: p_social_distancing <- 0.45;
 	parameter "Hạn chế dòng vào từ địa phương khác" category: "Trọng số của yếu tố Chính sách" var: p_traffic_in <- 0.35;
 	parameter "Mức độ quyết liệt trong truy tầm nguồn" category: "Trọng số của yếu tố Chính sách" var: p_emphasize <- 0.2;
+	
+	
+	parameter "Thư mục lưu kết quả" category: "Hiển thị" var: a_file;
+//	parameter "Disable following parameters" category: "Hiển thị" var: a_boolean_to_disable_parameters disables: [a_file];
+	user_command "Xuất kết quả" category: "Hiển thị" color:#darkblue {ask world {do writing_results;}}
+//	parameter "Xem xếp hạng" category: "Hiển thị" var: show_ranking <- true ;
+//	parameter "Số lượng hiển thị xếp hạng" category: "Hiển thị" var: nb_ranking_list <- 5 min:1 max:10;
 //	parameter "Mức tăng cấp quốc gia" category: "Hiển thị" var: nb_increase_size_1 <- 10;
 //	parameter "Mức tăng cấp thành phố" category: "Hiển thị" var: nb_increase_size_2 <- 5;
 //	parameter "Mức tăng cấp quận" category: "Hiển thị" var: nb_increase_size_3 <- 1;
@@ -36,7 +43,7 @@ experiment AbstractExp virtual: true {
 		display "default_display" synchronized: false background: background virtual: true draw_env: false {
 			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
 			overlay position: {100, 0} size: {700 #px, 200 #px} transparency: 0 {
-				draw ("" + map_GIS_name[GIS_id] + " | Detected:"+(AdministrativeBound sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
+				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:"+(AdministrativeBound sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
 				draw ("" + current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
 			}
 
@@ -44,18 +51,18 @@ experiment AbstractExp virtual: true {
 			event mouse_move action: move;
 			graphics "Info" {
 				if (under_mouse_agent != nil) {
-					string str;
-					if (length(GIS_id) = 5) {
-						str <- under_mouse_agent.VARNAME_1;
-					}
-
-					if (length(GIS_id) = 8) {
-						str <- under_mouse_agent.VARNAME_2;
-					}
-
-					if (length(GIS_id) = 11) {
-						str <- under_mouse_agent.VARNAME_3;
-					}
+					string str<-under_mouse_agent.current_name;
+//					if (length(GIS_id) = 5) {
+//						str <- under_mouse_agent.VARNAME_1;
+//					}
+//
+//					if (length(GIS_id) = 8) {
+//						str <- under_mouse_agent.VARNAME_2;
+//					}
+//
+//					if (length(GIS_id) = 11) {
+//						str <- under_mouse_agent.VARNAME_3;
+//					}
 
 					str <- str + ": " + length(under_mouse_agent.detected_cases_F0);
 					draw str at:  {target.x-(length(str)*20),target.y} empty: false font: info border: true color: #yellow;
@@ -70,24 +77,33 @@ experiment AbstractExp virtual: true {
 			species AdministrativeBound aspect: risky position: {0, 0, 0.002}; //transparency: 0.5;
 			//			event mouse_move action: move;
 			overlay position: {100, 0} size: {700 #px, 200 #px} transparency: 0 {
-				draw ("" + map_GIS_name[GIS_id] + " | Risky") font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
+				draw ("" + map_GIS_name[GIS_id] + " | Nguy cơ") font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
 				draw ("" + current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
+				
+				if(show_ranking){
+					int y<-100;
+					list<AdministrativeBound> candi<-AdministrativeBound sort_by (-each.risk_point);
+					loop i from:0 to:nb_ranking_list-1{
+						y<-y+20;
+						draw ("" + candi[i].current_name+" "+int(candi[i].risk_point)) font: info at: {20 #px, y #px} anchor: #top_left color: text_color;
+					}
+				}
 			}
 
 			graphics "Info" position: {0, 0, 0.004} {
 				if (under_mouse_agent != nil) {
-					string str;
-					if (length(GIS_id) = 5) {
-						str <- under_mouse_agent.VARNAME_1;
-					}
-
-					if (length(GIS_id) = 8) {
-						str <- under_mouse_agent.VARNAME_2;
-					}
-
-					if (length(GIS_id) = 11) {
-						str <- under_mouse_agent.VARNAME_3;
-					}
+					string str<-under_mouse_agent.current_name;
+//					if (length(GIS_id) = 5) {
+//						str <- under_mouse_agent.VARNAME_1;
+//					}
+//
+//					if (length(GIS_id) = 8) {
+//						str <- under_mouse_agent.VARNAME_2;
+//					}
+//
+//					if (length(GIS_id) = 11) {
+//						str <- under_mouse_agent.VARNAME_3;
+//					}
 
 					str <- str + ": " + int(under_mouse_agent.risk_point);
 					draw str at: {target.x-(length(str)*20),target.y} empty: false font: info border: false color: #yellow;
