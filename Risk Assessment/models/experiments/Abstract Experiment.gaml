@@ -10,7 +10,7 @@ import "../Global.gaml"
 
 global {
 	font default <- font("Helvetica", 20, #bold);
-	font info <- font("Helvetica", 14, #bold);
+	font info <- font("Helvetica", 18, #bold);
 	rgb text_color <- world.color.brighter.brighter.brighter;
 	rgb background <- world.color.darker.darker;
 }
@@ -45,15 +45,15 @@ experiment AbstractExp virtual: true {
 			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
 			overlay position: {100, 0} size: {270 #px, 400 #px} transparency: 0.2 {
 				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:"+(AdministrativeBound sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
-				draw ("" + current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
+				draw ("" + current_date) font: info at: {20 #px, 80 #px} anchor: #top_left color: text_color;
 				draw ("Xếp hạng nguy cơ:") font: default at: {20 #px, 110 #px} anchor: #top_left color: text_color;
 			
 				if(show_ranking){
 					int y<-130;
 					list<AdministrativeBound> candi<-AdministrativeBound sort_by (-each.risk_point);
 					loop i from:0 to:nb_ranking_list-1{
-						y<-y+20;
-						draw (""+(i+1) +" . "+candi[i].current_name) font: info at: {20 #px, y #px} anchor: #top_left color: text_color;
+						y<-y+25;
+						draw (((i+1)<10?"0":"")+(i+1) +" . "+candi[i].current_name) font: info at: {20 #px, y #px} anchor: #top_left color: candi[i].my_risk_color.brighter;
 					}
 				}
 			}
