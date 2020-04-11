@@ -47,8 +47,8 @@ experiment AbstractExp virtual: true {
 				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (AdministrativeBound_1 sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
 				text_color;
 				draw ("" + current_date) font: info at: {20 #px, 80 #px} anchor: #top_left color: text_color;
-				draw ("Xếp hạng nguy cơ:") font: default at: {20 #px, 110 #px} anchor: #top_left color: text_color;
 				if (show_ranking) {
+					draw ("Xếp hạng nguy cơ:") font: default at: {20 #px, 110 #px} anchor: #top_left color: text_color;
 					int y <- 130;
 					list<AdministrativeBound_1> candi <- AdministrativeBound_1 sort_by (-each.risk_point);
 					loop i from: 0 to: nb_ranking_list - 1 {
