@@ -37,18 +37,21 @@ global {
 		//							write GID_2;
 			neighbors <- (AdministrativeBound where (each touches self)) - self;
 			if (length(GIS_id) = 5) {
+				circle_bound<-circle(size_of_circle_1) at_location location;
 				current_gid <- GID_1;
 				current_name <- NAME_1;
 				current_varname <- VARNAME_1;
 			}
 
 			if (length(GIS_id) = 8) {
+				circle_bound<-circle(size_of_circle_1) at_location location;
 				current_gid <- GID_2;
 				current_name <- NAME_2;
 				current_varname <- VARNAME_2;
 			}
 
 			if (length(GIS_id) = 11) {
+				circle_bound<-circle(size_of_circle_1) at_location location;
 				current_gid <- GID_3;
 				current_name <- NAME_3;
 				current_varname <- VARNAME_3;
@@ -95,8 +98,10 @@ global {
 							name <- (statistic_cases[0, row_idx]);
 							origin <- myself;
 							detected_date <- date(statistic_cases[3, row_idx]);
+							location<-any_location_in(origin.circle_bound);
 						}
 
+						circle_bound<-circle(size_of_circle_1) at_location location;
 						detected_cases_F0 << first(D);
 					}
 
@@ -155,6 +160,7 @@ global {
 						I <- I + 1;
 						S <- S - 1;
 						create DetectedCase returns: D {
+							location<-any_location_in(origin);
 							name <- (statistic_cases[0, row_idx]);
 							origin <- myself;
 							detected_date <- date(statistic_cases[3, row_idx]);
@@ -190,8 +196,10 @@ global {
 					if (I > 0) {
 						create DetectedCase number: I returns: D {
 							origin <- myself;
+							location<-any_location_in(origin.circle_bound);
 						}
 
+						circle_bound<-circle(size_of_circle_1) at_location location;
 						detected_cases_F0 <- detected_cases_F0 + D;
 					}
 

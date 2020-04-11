@@ -15,7 +15,7 @@ global {
 	float step <- 15 #minute;
 
 	//thoi gian khoi dau mo hinh
-	date starting_date <- date([2020, 3, 1, 0, 0]);
+	date starting_date <- date([2020, 3, 31, 0, 0]);
 
 	// thoi gian virus ton tai va gay nguy hiem o khu vuc benh nhan di qua (tinh theo gio)
 	int v_time_life <- 24;
@@ -29,7 +29,7 @@ global {
 	geometry shape <- envelope(provinces_shp_file);
 	
 	
-	bool show_ranking<-true;
+	bool show_ranking<-false;
 	int nb_ranking_list <- 10;
 	file a_file <- folder("../../results/");
 	bool a_boolean_to_disable_parameters <- true;
@@ -76,10 +76,14 @@ global {
 	AdministrativeBound under_mouse_agent;
 	
 	int nb_increase_size_1<-10;
-	int nb_increase_size_2<-5;
-	int nb_increase_size_3<-1;
+	int nb_increase_size_2<-25;
+	int nb_increase_size_3<-5;
 	map<int,int> map_nb_increase<-[5::nb_increase_size_1,8::nb_increase_size_1,11::nb_increase_size_1];
 	
 	
 	float max_risk_point ->((AdministrativeBound max_of each.risk_point) <200 ? 200:(AdministrativeBound max_of each.risk_point) );
+	float radius_circle_1<- (20 #km);
+	float radius_circle_2 -> radius_circle_1 * ((world.shape.perimeter) / 4000000);
+	float radius_circle_3 -> radius_circle_1* ((world.shape.perimeter) / 4000000);
+	
 }
