@@ -67,7 +67,7 @@ experiment AbstractExp virtual: true {
 			graphics "Info" position: {0, 0, 0.004}  {
 				if (#zoom >= 3) {
 					if (under_mouse_agent != nil) {
-						string str <- under_mouse_agent.current_varname;
+						string str <- (under_mouse_agent.parent_varname!="Viet Nam"?(under_mouse_agent.parent_varname+", "):"")+under_mouse_agent.current_varname;
 						str <- str + ": " + length(under_mouse_agent.detected_cases_F0);
 						draw str at: {target.x - (length(str) * 20), target.y} empty: false perspective:false font: info border: true color: text_color;
 					}

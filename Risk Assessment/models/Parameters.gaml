@@ -70,7 +70,7 @@ global {
 //	float max_risk_point ->{AdministrativeBound_1 max_of each.risk_point};
 	map<string,list<AdministrativeBound_1>> map_adm_1;// <- AdministrativeBound_1 group_by (each.VARNAME_1);
 	map<string,list<AdministrativeBound_2>> map_adm_2;// <- AdministrativeBound_1 group_by (each.VARNAME_2);
-	map<string,list<AdministrativeBound_1>> map_adm_3;// <- AdministrativeBound_1 group_by (each.VARNAME_2+" "+each.VARNAME_3);
+	map<string,list<AdministrativeBound_3>> map_adm_3;// <- AdministrativeBound_1 group_by (each.VARNAME_2+" "+each.VARNAME_3);
 	
 	
 	point target;	
@@ -78,8 +78,8 @@ global {
 	AdministrativeBound under_mouse_agent;
 	
 	int nb_increase_size_1<-10;
-	int nb_increase_size_2<-25;
-	int nb_increase_size_3<-5;
+	int nb_increase_size_2<-5;
+	int nb_increase_size_3<-1;
 	map<int,int> map_nb_increase<-[5::nb_increase_size_1,8::nb_increase_size_1,11::nb_increase_size_1];
 	
 	

@@ -4,14 +4,14 @@
 * Description: 
 * Tags: Tag1, Tag2, TagN
 ***/
-@ no_experiment 
-model init_infected_cases
+@ no_experiment model init_infected_cases
 
 import "../Constants.gaml"
 import "../Parameters.gaml"
 import "../species/AdministrativeBound.gaml"
 
-global { 
+global {
+
 	action init_infected_cases {
 		string fpath <- "../../data/VNM_1.csv";
 		if (!file_exists(fpath)) {
@@ -20,71 +20,27 @@ global {
 
 		file pop_csv_file <- csv_file(fpath);
 		matrix data <- (pop_csv_file.contents);
-		if (length(GIS_id) = 5) {
-			loop i from: 0 to: data.rows - 1 {
-				AdministrativeBound_1 p <- first(AdministrativeBound_1 where (each.VARNAME_1 = data[0, i]));
-				ask p {
-					N <- int(data[1, i]);
-					I <- float(data[2, i]);
-					if (I > 0) {
-						create DetectedCase number: I returns: D {
-							origin <- myself;
-							location <- any_location_in(origin.circle_bound);
-						}
-
-						circle_bound <- circle(size_of_circle_1) at_location location;
-						detected_cases_F0 <- detected_cases_F0 + D;
+		loop i from: 0 to: data.rows - 1 {
+			AdministrativeBound_1 p <- first(AdministrativeBound_1 where (each.VARNAME_1 = data[0, i]));
+			ask p {
+				N <- int(data[1, i]);
+				I <- float(data[2, i]);
+				if (I > 0) {
+					create DetectedCase number: I returns: D {
+						origin1 <- myself;
+						origin2 <- first(AdministrativeBound_2 where(each.VARNAME_1= myself.VARNAME_1));
+						location <- any_location_in(origin1.circle_bound);
 					}
 
-					rgb null <- mycolor;
+					circle_bound <- circle(size_of_circle_1) at_location location;
+					detected_cases_F0 <- detected_cases_F0 + D;
 				}
 
-			}
-
-		}
-
-		if (length(GIS_id) = 8) {
-			loop i from: 0 to: data.rows - 1 {
-				AdministrativeBound_1 p <- first(AdministrativeBound_1 where (each.VARNAME_2 = data[0, i]));
-				ask p {
-					N <- int(data[1, i]);
-					I <- float(data[2, i]);
-					if (I > 0) {
-						create DetectedCase number: I returns: D {
-							origin <- myself;
-						}
-
-						detected_cases_F0 <- detected_cases_F0 + D;
-					}
-
-					rgb null <- mycolor;
-				}
-
-			}
-
-		}
-
-		if (length(GIS_id) = 11) {
-			loop i from: 0 to: data.rows - 1 {
-				AdministrativeBound_1 p <- first(AdministrativeBound_1 where (each.VARNAME_3 = data[0, i]));
-				ask p {
-					N <- int(data[1, i]);
-					I <- float(data[2, i]);
-					if (I > 0) {
-						create DetectedCase number: I returns: D {
-							origin <- myself;
-						}
-
-						detected_cases_F0 <- detected_cases_F0 + D;
-					}
-
-					rgb null <- mycolor;
-				}
-
+				rgb null <- mycolor;
 			}
 
 		}
 
 	}
- 
+
 }

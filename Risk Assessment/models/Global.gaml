@@ -4,7 +4,8 @@
 * Description: 
 * Tags: Tag1, Tag2, TagN
 ***/
-@ no_experiment model RiskEstimate
+@ no_experiment 
+model RiskEstimate
 
 import "Constants.gaml"
 import "Functions.gaml"

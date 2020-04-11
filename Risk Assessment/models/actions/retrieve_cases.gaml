@@ -20,105 +20,48 @@ global {
 
 		file statistic_csv_file <- csv_file(fpath, true);
 		matrix statistic_cases <- (statistic_csv_file.contents);
-		if (length(GIS_id) = 5) {
-			loop while: ((row_idx < statistic_cases.rows) and (d.day_of_year >= date(statistic_cases[3, row_idx]).day_of_year)) {
-				if (!(statistic_cases_added contains row_idx)) {
-					string str <- "" + (statistic_cases[0, row_idx]) + " " + (statistic_cases[1, row_idx]) + " " + (statistic_cases[2, row_idx]) + " " + date(statistic_cases[3, row_idx]);
-					write "xxxx " + row_idx + " " + str;
-					//				ask (AdministrativeBound_1 where (each.GID_2 = GIS_id2 and each.VARNAME_3 = statistic_cases[2, row_idx])) {
-					list<AdministrativeBound> adm;
-					if (statistic_cases[2, row_idx] = "" or statistic_cases[2, row_idx] = "Cach y") {
-						adm <- (first(map_adm_2.values));
-					} else {
-						adm <- AdministrativeBound_1 where (each.VARNAME_1 = statistic_cases[2, row_idx]);
-					}
-
-					ask adm {
-					//					write VARNAME_2;
-					//					infected <- true;
-						I <- I + 1;
-						S <- S - 1;
-						create DetectedCase returns: D {
-							name <- (statistic_cases[0, row_idx]);
-							origin <- myself;
-							detected_date <- date(statistic_cases[3, row_idx]);
-							location <- any_location_in(origin.circle_bound);
+		loop while: ((row_idx < statistic_cases.rows) and (d.day_of_year >= date(statistic_cases[3, row_idx]).day_of_year)) {
+			if (!(statistic_cases_added contains row_idx)) {
+//				string str <- "" + (statistic_cases[0, row_idx]) + " " + (statistic_cases[1, row_idx]) + " " + (statistic_cases[2, row_idx]) + " " + date(statistic_cases[3, row_idx]);
+//				write "xxxx " + row_idx + " " + str;
+				//				ask (AdministrativeBound_1 where (each.GID_2 = GIS_id2 and each.VARNAME_3 = statistic_cases[2, row_idx])) {
+				list<AdministrativeBound_1> adm1;
+				list<AdministrativeBound_2> adm2;
+				list<AdministrativeBound_3> adm3;
+				if (statistic_cases[2, row_idx] = "" or statistic_cases[2, row_idx] = "cach ly") {
+					adm1 <- (first(map_adm_1.values));
+				} else {
+					adm1 <- AdministrativeBound_1 where (each.VARNAME_1 = statistic_cases[2, row_idx]);
+				}
+				if (statistic_cases[4, row_idx] = "" or statistic_cases[4, row_idx] = "cach ly") {
+					adm2 <- (AdministrativeBound_2 where (each.VARNAME_1 = statistic_cases[2, row_idx]));
+				} else {
+					adm2<- map_adm_2["" + statistic_cases[2, row_idx] + " " + statistic_cases[4, row_idx]];
+				}
+//				list D;
+				ask adm1 { 
+				//					write VARNAME_2;
+				//					infected <- true;
+					I <- I + 1;
+					S <- S - 1;
+					create DetectedCase returns: D {
+						name <- (statistic_cases[0, row_idx]);
+						origin1 <- myself;
+						if(length(adm2)>0){
+							origin2<-first(adm2);
+							origin2.circle_bound <- circle(origin2.size_of_circle_2) at_location origin2.location;							
 						}
-
-						circle_bound <- circle(size_of_circle_1) at_location location;
-						detected_cases_F0 << first(D);
+						detected_date <- date(statistic_cases[3, row_idx]); 
 					}
 
-					statistic_cases_added << row_idx;
+					circle_bound <- circle(size_of_circle_1) at_location location;
+					detected_cases_F0 << first(D);
 				}
 
-				row_idx <- row_idx + 1;
+				statistic_cases_added << row_idx;
 			}
 
-		}
-
-		if (length(GIS_id) = 8) {
-			loop while: ((row_idx < statistic_cases.rows) and (d.day_of_year >= date(statistic_cases[3, row_idx]).day_of_year)) {
-				if (!(statistic_cases_added contains row_idx)) {
-					string str <- "" + (statistic_cases[0, row_idx]) + " " + (statistic_cases[1, row_idx]) + " " + (statistic_cases[2, row_idx]) + " " + date(statistic_cases[3, row_idx]);
-					write "xxxx " + row_idx + " " + str;
-					//				ask (AdministrativeBound_1 where (each.GID_2 = GIS_id2 and each.VARNAME_3 = statistic_cases[2, row_idx])) {
-					list<AdministrativeBound> adm;
-					if (statistic_cases[2, row_idx] = "" or statistic_cases[2, row_idx] = "Cach y") {
-						adm <- (first(map_adm_2.values));
-					} else {
-						adm <- map_adm_2["" + statistic_cases[2, row_idx]];
-					}
-
-					ask adm {
-					//					write VARNAME_2;
-					//					infected <- true;
-						I <- I + 1;
-						S <- S - 1;
-						create DetectedCase returns: D {
-							name <- (statistic_cases[0, row_idx]);
-							origin <- myself;
-							detected_date <- date(statistic_cases[3, row_idx]);
-						}
-
-						detected_cases_F0 << first(D);
-					}
-
-					statistic_cases_added << row_idx;
-				}
-
-				row_idx <- row_idx + 1;
-			}
-
-		}
-
-		if (length(GIS_id) = 11) {
-			loop while: ((row_idx < statistic_cases.rows) and (d.day_of_year >= date(statistic_cases[3, row_idx]).day_of_year)) {
-				if (!(statistic_cases_added contains row_idx)) {
-					string str <- "" + (statistic_cases[0, row_idx]) + " " + (statistic_cases[1, row_idx]) + " " + (statistic_cases[2, row_idx]) + " " + date(statistic_cases[3, row_idx]);
-					//				write "" + row_idx + " " + str;
-					//				ask (AdministrativeBound_1 where (each.GID_2 = GIS_id2 and each.VARNAME_3 = statistic_cases[2, row_idx])) {
-					ask map_adm_3["" + statistic_cases[1, row_idx] + " " + statistic_cases[2, row_idx]] {
-					//					write VARNAME_2;
-					//					infected <- true;
-						I <- I + 1;
-						S <- S - 1;
-						create DetectedCase returns: D {
-							location <- any_location_in(origin);
-							name <- (statistic_cases[0, row_idx]);
-							origin <- myself;
-							detected_date <- date(statistic_cases[3, row_idx]);
-						}
-
-						detected_cases_F0 << first(D);
-					}
-
-					statistic_cases_added << row_idx;
-				}
-
-				row_idx <- row_idx + 1;
-			}
-
+			row_idx <- row_idx + 1;
 		}
 
 	}

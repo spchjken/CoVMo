@@ -20,23 +20,25 @@ global {
 				circle_bound <- circle(size_of_circle_1) at_location location;
 				current_gid <- GID_1;
 				current_name <- NAME_1;
+				parent_varname<-"Viet Nam";
 				current_varname <- VARNAME_1; 
 				
 				}
 		ask AdministrativeBound_2 {
 		//							write NAME_2;
 		//							write GID_2;
-			neighbors <- (AdministrativeBound_1 where (each touches self)) - self; 
+			neighbors <- (AdministrativeBound_2 where (each touches self)) - self; 
 		 
-				circle_bound <- circle(size_of_circle_1) at_location location;
+				circle_bound <- circle(size_of_circle_2) at_location location;
 				current_gid <- GID_2;
 				current_name <- NAME_2;
+				parent_varname<-VARNAME_1;
 				current_varname <- VARNAME_2; 
 
 		}
 
 		map_adm_1 <- AdministrativeBound_1 group_by (each.VARNAME_1);
-		map_adm_2 <- AdministrativeBound_2 group_by (each.VARNAME_2);
-		map_adm_3 <- AdministrativeBound_1 group_by ("" + each.VARNAME_2 + " " + each.VARNAME_3);
+		map_adm_2 <- AdministrativeBound_2 group_by ("" + each.VARNAME_1 + " " + each.VARNAME_2);
+		map_adm_3 <- AdministrativeBound_3 group_by ("" + each.VARNAME_2 + " " + each.VARNAME_3);
 	}
 }

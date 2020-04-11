@@ -9,7 +9,7 @@
 import "EpidemiologicHost.gaml"
 import "DetectedCase.gaml"
 import "../Parameters.gaml"
-species AdministrativeBound  parent: EpidemiologicHost {
+species AdministrativeBound parent: EpidemiologicHost {
 	string NAME_1;
 	string NAME_2;
 	string NAME_3;
@@ -37,9 +37,14 @@ species AdministrativeBound  parent: EpidemiologicHost {
 	string current_gid;
 	string current_name;
 	string current_varname;
+	string parent_varname;
 	geometry circle_bound;
 	//	rgb mycolor -> {hsb(0, (risk_assessment_point > 25 ? 0.1 : 0) + (I > 25 ? 25 : I) / 29, 1)}; //	rgb mycolor -> {hsb(0, I/N, 1)};
 	rgb my_risk_color -> {hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1)}; //	rgb mycolor -> {hsb(0, I/N, 1)};
+	float size_of_circle_1 -> {(1 #km + ((length(detected_cases_F0) / nb_increase_size_1) < 30 ? (length(detected_cases_F0) / nb_increase_size_1) #km : 30 #km))};
+	float size_of_circle_2 -> {(1 #km + ((length(detected_cases_F0) / nb_increase_size_1) < 30 ? (length(detected_cases_F0) / nb_increase_size_1) #km : 30 #km)) * ((world.shape.perimeter) / 4000000)};
+	float size_of_circle_3 -> {(1 #km + ((length(detected_cases_F0) / nb_increase_size_1) < 30 ? (length(detected_cases_F0) / nb_increase_size_1) #km : 30 #km)) * ((world.shape.perimeter) / 4000000)};
+	//	map<int,float> c_size<-[5::size_of_circle_1,8::size_of_circle_2,11::size_of_circle_3];
 	float accessment {
 		return weight_risk_social * get_risk_social() + weight_risk_contact * get_risk_contact() + weight_risk_policy * get_risk_policy();
 	}
@@ -66,12 +71,6 @@ species AdministrativeBound  parent: EpidemiologicHost {
 
 	}
 
-	float size_of_circle_1 -> {(1 #km + ((length(detected_cases_F0) / nb_increase_size_1) < 30 ? (length(detected_cases_F0) / nb_increase_size_1) #km : 30 #km))};
-	float size_of_circle_2 -> {(5 #km + ((length(detected_cases_F0) / nb_increase_size_2) < 30 ? (length(detected_cases_F0) / nb_increase_size_2) #km : 30
-	#km)) * ((world.shape.perimeter) / 4000000)};
-	float size_of_circle_3 -> {(5 #km + ((length(detected_cases_F0) / nb_increase_size_3) < 30 ? (length(detected_cases_F0) / nb_increase_size_3) #km : 30
-	#km)) * ((world.shape.perimeter) / 4000000)};
-	//	map<int,float> c_size<-[5::size_of_circle_1,8::size_of_circle_2,11::size_of_circle_3];
 	aspect default {
 	//		draw shape color: I>0?#red:#white border: #black;
 		draw shape color: #white empty: true border: #darkgray;
@@ -93,14 +92,16 @@ species AdministrativeBound  parent: EpidemiologicHost {
 		}
 
 	}
+
 	aspect simple {
 	//		draw shape color: I>0?#red:#white border: #black;
-		draw shape color: #white empty: true border: #white; 
-//		if (#zoom > 3) {
-//			draw current_name at: location color: #white;
-//		}
+		draw shape color: #white empty: true border: #white;
+		//		if (#zoom > 3) {
+		//			draw current_name at: location color: #white;
+		//		}
 
 	}
+
 	aspect mixed {
 	// 		draw shape color: #white empty: true border: #darkgray;
 		draw shape color: my_risk_color border: #black;
@@ -121,48 +122,64 @@ species AdministrativeBound  parent: EpidemiologicHost {
 
 	}
 
-
 	aspect mixed_wander {
 	// 		draw shape color: #white empty: true border: #darkgray;
 		draw shape color: my_risk_color border: #black;
-		
-//		if (length(detected_cases_F0) > 0) {
-//			if (length(GIS_id) = 5) {
-//				draw circle(size_of_circle_1) color: #red border: #yellow;
-//			}
-//
-//			if (length(GIS_id) = 8) {
-//				draw circle(size_of_circle_2) color: #red border: #yellow;
-//			}
-//
-//			if (length(GIS_id) = 11) {
-//				draw circle(size_of_circle_3) color: #red border: #yellow;
-//			}
-//
-//		}
+
+		//		if (length(detected_cases_F0) > 0) {
+		//			if (length(GIS_id) = 5) {
+		//				draw circle(size_of_circle_1) color: #red border: #yellow;
+		//			}
+		//
+		//			if (length(GIS_id) = 8) {
+		//				draw circle(size_of_circle_2) color: #red border: #yellow;
+		//			}
+		//
+		//			if (length(GIS_id) = 11) {
+		//				draw circle(size_of_circle_3) color: #red border: #yellow;
+		//			}
+		//
+		//		}
 
 	}
 
 }
-species AdministrativeBound_1 parent:AdministrativeBound{
+
+species AdministrativeBound_1 parent: AdministrativeBound {
+
 	aspect simple {
 	//		draw shape color: I>0?#red:#white border: #black;
 		if (#zoom <= 6) {
-			draw shape color: #white empty: true border: #gray; 
-//			draw current_name at: location color: #white;
+			draw shape color: #white empty: true border: #gray;
+			//			draw current_name at: location color: #white;
 		}
 
 	}
-	
+
 }
-species AdministrativeBound_2 parent:AdministrativeBound{
+
+species AdministrativeBound_2 parent: AdministrativeBound {
+
 	aspect simple {
 	//		draw shape color: I>0?#red:#white border: #black;
-		if (#zoom > 6) {
-			draw shape color: #white empty: true border: #gray; 
-//			draw current_name at: location color: #white;
+		if (#zoom > 6) { //} and #zoom<=9) {
+			draw shape color: #white empty: true border: #gray;
+			//			draw current_name at: location color: #white;
 		}
 
 	}
-	
+
+}
+
+species AdministrativeBound_3 parent: AdministrativeBound {
+
+	aspect simple {
+	//		draw shape color: I>0?#red:#white border: #black;
+		if (#zoom > 9) {
+			draw shape color: #white empty: true border: #gray;
+			//			draw current_name at: location color: #white;
+		}
+
+	}
+
 }
