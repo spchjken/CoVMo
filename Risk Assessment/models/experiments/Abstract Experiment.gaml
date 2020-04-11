@@ -43,13 +43,14 @@ experiment AbstractExp virtual: true {
 		display "default_mixed_wander_display" synchronized: false background: background virtual: true draw_env: false {
 			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
 			overlay position: {100, 0} size: {270 #px, 400 #px} transparency: 0.2 {
-				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (AdministrativeBound sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
+				c_zoom<-#zoom;
+				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (AdministrativeBound_1 sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
 				text_color;
 				draw ("" + current_date) font: info at: {20 #px, 80 #px} anchor: #top_left color: text_color;
 				draw ("Xếp hạng nguy cơ:") font: default at: {20 #px, 110 #px} anchor: #top_left color: text_color;
 				if (show_ranking) {
 					int y <- 130;
-					list<AdministrativeBound> candi <- AdministrativeBound sort_by (-each.risk_point);
+					list<AdministrativeBound_1> candi <- AdministrativeBound_1 sort_by (-each.risk_point);
 					loop i from: 0 to: nb_ranking_list - 1 {
 						y <- y + 25;
 						draw (((i + 1) < 10 ? "0" : "") + (i + 1) + " . " + candi[i].current_name) font: info at: {20 #px, y #px} anchor: #top_left color: candi[i].my_risk_color.brighter;
@@ -59,11 +60,12 @@ experiment AbstractExp virtual: true {
 
 			}
 
-			species AdministrativeBound aspect: simple  position: {0, 0, 0.001} ;
-			species DetectedCase;
+			species AdministrativeBound_1 aspect: simple  position: {0, 0, 0.001} ;//transparency:0.1;
+			species AdministrativeBound_2 aspect: simple  position: {0, 0, 0.002} ;//transparency:0.1;
+			species DetectedCase  position: {0, 0, 0.003};
 			event mouse_move action: move;
 			graphics "Info" position: {0, 0, 0.004}  {
-				if (#zoom > 4) {
+				if (#zoom >= 3) {
 					if (under_mouse_agent != nil) {
 						string str <- under_mouse_agent.current_varname;
 						str <- str + ": " + length(under_mouse_agent.detected_cases_F0);
@@ -79,13 +81,13 @@ experiment AbstractExp virtual: true {
 		display "default_mixed_display" synchronized: false background: background virtual: true draw_env: false {
 			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
 			overlay position: {100, 0} size: {270 #px, 400 #px} transparency: 0.2 {
-				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (AdministrativeBound sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
+				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (AdministrativeBound_1 sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
 				text_color;
 				draw ("" + current_date) font: info at: {20 #px, 80 #px} anchor: #top_left color: text_color;
 				draw ("Xếp hạng nguy cơ:") font: default at: {20 #px, 110 #px} anchor: #top_left color: text_color;
 				if (show_ranking) {
 					int y <- 130;
-					list<AdministrativeBound> candi <- AdministrativeBound sort_by (-each.risk_point);
+					list<AdministrativeBound_1> candi <- AdministrativeBound_1 sort_by (-each.risk_point);
 					loop i from: 0 to: nb_ranking_list - 1 {
 						y <- y + 25;
 						draw (((i + 1) < 10 ? "0" : "") + (i + 1) + " . " + candi[i].current_name) font: info at: {20 #px, y #px} anchor: #top_left color: candi[i].my_risk_color.brighter;
@@ -95,7 +97,7 @@ experiment AbstractExp virtual: true {
 
 			}
 
-			species AdministrativeBound aspect: mixed; // transparency: 0.5 ;
+			species AdministrativeBound_1 aspect: mixed; // transparency: 0.5 ;
 			event mouse_move action: move;
 			graphics "Info" transparency: 0.2 {
 				if (under_mouse_agent != nil) {
@@ -111,12 +113,12 @@ experiment AbstractExp virtual: true {
 		display "default_display" synchronized: false background: background virtual: true draw_env: false {
 			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
 			overlay position: {100, 0} size: {700 #px, 200 #px} transparency: 0 {
-				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (AdministrativeBound sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
+				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (AdministrativeBound_1 sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
 				text_color;
 				draw ("" + current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
 			}
 
-			species AdministrativeBound aspect: default;
+			species AdministrativeBound_1 aspect: default;
 			event mouse_move action: move;
 			graphics "Info" {
 				if (under_mouse_agent != nil) {
@@ -131,14 +133,14 @@ experiment AbstractExp virtual: true {
 
 		display "default_display_risk" synchronized: false background: background virtual: true draw_env: false {
 			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
-			species AdministrativeBound aspect: risky position: {0, 0, 0.002}; //transparency: 0.5;
+			species AdministrativeBound_1 aspect: risky position: {0, 0, 0.002}; //transparency: 0.5;
 			//			event mouse_move action: move;
 			overlay position: {100, 0} size: {700 #px, 200 #px} transparency: 0 {
 				draw ("" + map_GIS_name[GIS_id] + " | Nguy cơ") font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
 				draw ("" + current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
 				if (show_ranking) {
 					int y <- 100;
-					list<AdministrativeBound> candi <- AdministrativeBound sort_by (-each.risk_point);
+					list<AdministrativeBound_1> candi <- AdministrativeBound_1 sort_by (-each.risk_point);
 					loop i from: 0 to: nb_ranking_list - 1 {
 						y <- y + 20;
 						draw ("" + candi[i].current_name + " " + int(candi[i].risk_point)) font: info at: {20 #px, y #px} anchor: #top_left color: text_color;
@@ -161,10 +163,10 @@ experiment AbstractExp virtual: true {
 
 		//		display "Statistic" {
 		//			chart 'SEIR' type: series {
-		////				data "S" value: sum(AdministrativeBound collect each.S) color: #green;
-		//				data "E" value: sum(AdministrativeBound collect each.E) color: #yellow;
-		//				data "I" value: sum(AdministrativeBound collect each.I) color: #red;
-		//				data "R" value: sum(AdministrativeBound collect each.R) color: #blue;
+		////				data "S" value: sum(AdministrativeBound_1 collect each.S) color: #green;
+		//				data "E" value: sum(AdministrativeBound_1 collect each.E) color: #yellow;
+		//				data "I" value: sum(AdministrativeBound_1 collect each.I) color: #red;
+		//				data "R" value: sum(AdministrativeBound_1 collect each.R) color: #blue;
 		//			}
 		//
 		//		}

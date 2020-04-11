@@ -12,6 +12,8 @@ import "AdministrativeBound.gaml"
 species DetectedCase skills:[moving]{
 	date detected_date;
 	AdministrativeBound origin;
+	AdministrativeBound_1 origin1;
+	AdministrativeBound_2 origin2;
 	rgb mycolor<-hsb(0,0.5+(rnd(5)/10) , 1);
 	reflex ss{
 		do wander amplitude:45.0  bounds:origin.circle_bound speed:0.25#m;

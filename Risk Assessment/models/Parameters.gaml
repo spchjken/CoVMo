@@ -13,7 +13,7 @@ import "species/AdministrativeBound.gaml"
 global {
 	// xac dinh moi buoc bang 15 phut
 	float step <- 15 #minute;
-
+	float c_zoom<-1.0;
 	//thoi gian khoi dau mo hinh
 	date starting_date <- date([2020, 3, 31, 0, 0]);
 
@@ -24,6 +24,8 @@ global {
 //	shape_file provinces_shp_file <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_1.shp");
 //	shape_file provinces_shp_file <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_2.shp");
 	shape_file provinces_shp_file <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_3.shp");
+	shape_file provinces_shp_file1 <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_1.shp");
+	shape_file provinces_shp_file2 <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_2.shp");
 
 	list<int> statistic_cases_added<-[];
 	geometry shape <- envelope(provinces_shp_file);
@@ -65,10 +67,10 @@ global {
 	map<string,string> map_GIS_name<-[GIS_id0::"Việt Nam",GIS_id1::"Hà Nội",GIS_id2::"Long Biên",GIS_id3::"Hồ Chí Minh"];
 	
 	 
-//	float max_risk_point ->{AdministrativeBound max_of each.risk_point};
-	map<string,list<AdministrativeBound>> map_adm_1;// <- AdministrativeBound group_by (each.VARNAME_1);
-	map<string,list<AdministrativeBound>> map_adm_2;// <- AdministrativeBound group_by (each.VARNAME_2);
-	map<string,list<AdministrativeBound>> map_adm_3;// <- AdministrativeBound group_by (each.VARNAME_2+" "+each.VARNAME_3);
+//	float max_risk_point ->{AdministrativeBound_1 max_of each.risk_point};
+	map<string,list<AdministrativeBound_1>> map_adm_1;// <- AdministrativeBound_1 group_by (each.VARNAME_1);
+	map<string,list<AdministrativeBound_2>> map_adm_2;// <- AdministrativeBound_1 group_by (each.VARNAME_2);
+	map<string,list<AdministrativeBound_1>> map_adm_3;// <- AdministrativeBound_1 group_by (each.VARNAME_2+" "+each.VARNAME_3);
 	
 	
 	point target;	
@@ -81,9 +83,10 @@ global {
 	map<int,int> map_nb_increase<-[5::nb_increase_size_1,8::nb_increase_size_1,11::nb_increase_size_1];
 	
 	
-	float max_risk_point ->((AdministrativeBound max_of each.risk_point) <200 ? 200:(AdministrativeBound max_of each.risk_point) );
+	float max_risk_point ->((AdministrativeBound_1 max_of each.risk_point) <200 ? 200:(AdministrativeBound_1 max_of each.risk_point) );
 	float radius_circle_1<- (20 #km);
 	float radius_circle_2 -> radius_circle_1 * ((world.shape.perimeter) / 4000000);
 	float radius_circle_3 -> radius_circle_1* ((world.shape.perimeter) / 4000000);
 	
+	int row_idx <- 0;
 }

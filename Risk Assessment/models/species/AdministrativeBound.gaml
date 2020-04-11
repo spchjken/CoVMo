@@ -9,7 +9,7 @@
 import "EpidemiologicHost.gaml"
 import "DetectedCase.gaml"
 import "../Parameters.gaml"
-species AdministrativeBound parent: EpidemiologicHost {
+species AdministrativeBound  parent: EpidemiologicHost {
 	string NAME_1;
 	string NAME_2;
 	string NAME_3;
@@ -143,4 +143,26 @@ species AdministrativeBound parent: EpidemiologicHost {
 
 	}
 
+}
+species AdministrativeBound_1 parent:AdministrativeBound{
+	aspect simple {
+	//		draw shape color: I>0?#red:#white border: #black;
+		if (#zoom <= 6) {
+			draw shape color: #white empty: true border: #gray; 
+//			draw current_name at: location color: #white;
+		}
+
+	}
+	
+}
+species AdministrativeBound_2 parent:AdministrativeBound{
+	aspect simple {
+	//		draw shape color: I>0?#red:#white border: #black;
+		if (#zoom > 6) {
+			draw shape color: #white empty: true border: #gray; 
+//			draw current_name at: location color: #white;
+		}
+
+	}
+	
 }

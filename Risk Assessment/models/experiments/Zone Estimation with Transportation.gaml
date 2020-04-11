@@ -24,13 +24,13 @@ experiment Pandemic2020 type: gui parent: AbstractExp autorun:true{
 			create simulation with: [do_init::false, GIS_id::lst_GIS_id[index]]{
 				if (length(GIS_id) = 8) {
 					provinces_shp_file <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_2.shp");
-					create AdministrativeBound from: provinces_shp_file;
-					save (AdministrativeBound where (each.GID_1 = GIS_id)) to: filepath type: "shp" attributes:
+					create AdministrativeBound_1 from: provinces_shp_file;
+					save (AdministrativeBound_1 where (each.GID_1 = GIS_id)) to: filepath type: "shp" attributes:
 					["ID"::int(self), "NAME_1"::NAME_1, "GID_1"::GID_1, "NAME_2"::NAME_2, "GID_2"::GID_2, "NAME_3"::NAME_3, "GID_3"::GID_3, "VARNAME_1"::VARNAME_1, "VARNAME_2"::VARNAME_2, "VARNAME_3"::VARNAME_3];
 				}
 				if (length(GIS_id) = 11) {
-					create AdministrativeBound from: provinces_shp_file;
-					save (AdministrativeBound where (each.GID_2 = GIS_id)) to: filepath type: "shp" attributes:
+					create AdministrativeBound_1 from: provinces_shp_file;
+					save (AdministrativeBound_1 where (each.GID_2 = GIS_id)) to: filepath type: "shp" attributes:
 					["ID"::int(self), "NAME_1"::NAME_1, "GID_1"::GID_1, "NAME_2"::NAME_2, "GID_2"::GID_2, "NAME_3"::NAME_3, "GID_3"::GID_3, "VARNAME_1"::VARNAME_1, "VARNAME_2"::VARNAME_2, "VARNAME_3"::VARNAME_3];
 				}
 				do die;
@@ -53,7 +53,7 @@ experiment Pandemic2020 type: gui parent: AbstractExp autorun:true{
 //				draw (""+current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
 //			}
 //
-//			species AdministrativeBound aspect: default;
+//			species AdministrativeBound_1 aspect: default;
 //			
 //			event mouse_move action: move;
 //			
