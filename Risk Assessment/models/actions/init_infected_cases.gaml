@@ -27,20 +27,25 @@ global {
 				I <- float(data[2, i]);
 				if (I > 0) {
 					create DetectedCase number: I returns: D {
-						recovered<-true;
+						recovered <- true;
 						origin1 <- myself;
-						origin2 <- first(AdministrativeBound_2 where(each.VARNAME_1= myself.VARNAME_1));
+						origin2 <- first(AdministrativeBound_2 where (each.VARNAME_1 = myself.VARNAME_1));
 						location <- any_location_in(origin1.circle_bound);
 					}
 
 					circle_bound <- circle(size_of_circle_1) at_location location;
-					detected_cases_F0 <- detected_cases_F0 + D;
-					my_risk_color<-hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1);
+					//					detected_cases_F0 <- detected_cases_F0 + D;
 				}
 
-				rgb null <- mycolor;
+				risk_point <- accessment();
+				my_risk_color <- hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1);
 			}
 
+		}
+
+		ask AdministrativeBound_2 {
+			risk_point <- accessment();
+			my_risk_color <- hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1);
 		}
 
 	}

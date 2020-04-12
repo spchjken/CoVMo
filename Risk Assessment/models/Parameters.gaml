@@ -15,11 +15,11 @@ global {
 	float step <- 15 #minute;
 	float c_zoom<-1.0;
 	//thoi gian khoi dau mo hinh
-	date starting_date <- date([2020, 3, 1, 0, 0]);
+	date starting_date <- date([2020, 4, 11, 0, 0]);
 
 	// thoi gian virus ton tai va gay nguy hiem o khu vuc benh nhan di qua (tinh theo gio)
 	int v_time_life <- 24;
-	bool do_init <- false;
+	bool do_init <- true;
 	float _size<-world.shape.perimeter/10000;
 //	shape_file provinces_shp_file <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_1.shp");
 //	shape_file provinces_shp_file <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_2.shp");
@@ -31,6 +31,7 @@ global {
 	geometry shape <- envelope(provinces_shp_file);
 	
 	
+	bool show_traffic<-true;
 	bool show_ranking<-true;
 	int nb_ranking_list <- 10;
 	file a_file <- folder("../../results/");
@@ -58,12 +59,12 @@ global {
 	float p_emphasize<-0.2;
 	
 	
-	string GIS_id;
 	string GIS_id0<-"VNM_1";
 	string GIS_id1<-"VNM.27_1";
 	string GIS_id2<-"VNM.27.16_1";
 	string GIS_id3<-"VNM.25_1";
 	list<string> lst_GIS_id<-[GIS_id0,GIS_id1,GIS_id2,GIS_id3];
+	string GIS_id<- lst_GIS_id[0];
 	map<string,string> map_GIS_name<-[GIS_id0::"Việt Nam",GIS_id1::"Hà Nội",GIS_id2::"Long Biên",GIS_id3::"Hồ Chí Minh"];
 	
 	 
@@ -84,7 +85,7 @@ global {
 	map<int,int> map_nb_increase<-[5::nb_increase_size_1,8::nb_increase_size_1,11::nb_increase_size_1];
 	
 	
-	float max_risk_point ->((AdministrativeBound_1 max_of each.risk_point) <200 ? 200:(AdministrativeBound_1 max_of each.risk_point) );
+	float max_risk_point <-200.0;
 	float radius_circle_1<- (20 #km);
 	float radius_circle_2 -> radius_circle_1 * ((world.shape.perimeter) / 4000000);
 	float radius_circle_3 -> radius_circle_1* ((world.shape.perimeter) / 4000000);

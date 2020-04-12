@@ -30,7 +30,7 @@ species AdministrativeBound parent: EpidemiologicHost {
 	int social_distancing;
 	int traffic_in;
 	int emphasize;
-	float risk_point -> {accessment()};
+	float risk_point ;//-> {accessment()};
 	float risk_social;
 	float risk_contact;
 	float risk_policy;
@@ -147,17 +147,22 @@ species AdministrativeBound parent: EpidemiologicHost {
 
 species AdministrativeBound_1 parent: AdministrativeBound {
 	list<AdministrativeBound_1> possible_transport<-[];
-	reflex transportation when:!empty(possible_transport){
+	int flow_capacity<-1;
+	reflex transportation when:!empty(possible_transport) and show_traffic{
 		create People{
+			condense<-myself.flow_capacity;
 			location<-myself.location;
 			my_target<-any(myself.possible_transport).location;
+			do init;
 		}
+
 	}
 
 	aspect simple {
 	//		draw shape color: I>0?#red:#white border: #black;
 		if (#zoom <= 6) {
 			draw shape color: my_risk_color border:#gray;
+//			draw shape color: #white empty: true border: #gray;
 			//			draw current_name at: location color: #white;
 		}
 
@@ -170,7 +175,8 @@ species AdministrativeBound_2 parent: AdministrativeBound {
 	aspect simple {
 	//		draw shape color: I>0?#red:#white border: #black;
 		if (#zoom > 6) { //} and #zoom<=9) {
-			draw shape color: #white empty: true border: #gray;
+			draw shape color: my_risk_color border:#gray;
+//			draw shape color: #white empty: true border: #gray;
 			//			draw current_name at: location color: #white;
 		}
 

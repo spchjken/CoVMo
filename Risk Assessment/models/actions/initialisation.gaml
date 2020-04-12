@@ -16,7 +16,7 @@ global {
 		ask AdministrativeBound_1 {
 		//							write NAME_2;
 		//							write GID_2;
-			neighbors <- (AdministrativeBound_1 where (each touches self)) - self; 
+//			neighbors <- (AdministrativeBound_1 where (each touches self)) - self; 
 				circle_bound <- circle(size_of_circle_1) at_location location;
 				current_gid <- GID_1;
 				current_name <- NAME_1;
@@ -27,7 +27,7 @@ global {
 		ask AdministrativeBound_2 {
 		//							write NAME_2;
 		//							write GID_2;
-			neighbors <- (AdministrativeBound_2 where (each touches self)) - self; 
+//			neighbors <- (AdministrativeBound_2 where (each touches self)) - self; 
 		 
 				circle_bound <- circle(size_of_circle_2) at_location location;
 				current_gid <- GID_2;

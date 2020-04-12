@@ -45,6 +45,9 @@ species DetectedCase parent:People {
 	} 
 	reflex ss when:!recovered and !confined{
 //		do change_zoom;
+//if(origin=nil){
+//	write self;
+//}
 		do wander amplitude: 45.0 bounds: origin.circle_bound speed:spd;
 	}
 

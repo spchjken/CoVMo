@@ -12,7 +12,7 @@ import "../species/AdministrativeBound.gaml"
 
 global {
 
-	action retrieve_cases {		
+	action retrieve_cases {
 		string fpath <- "../../data/VNM_1_statistic.csv";
 		if (!file_exists(fpath)) {
 			return;
@@ -27,7 +27,7 @@ global {
 			//				ask (AdministrativeBound_1 where (each.GID_2 = GIS_id2 and each.VARNAME_3 = statistic_cases[2, row_idx])) {
 				list<AdministrativeBound_1> adm1;
 				list<AdministrativeBound_2> adm2;
-				list<AdministrativeBound_3> adm3; 
+				list<AdministrativeBound_3> adm3;
 				if (statistic_cases[2, row_idx] = "" or statistic_cases[2, row_idx] = "cach ly") {
 					adm1 <- (first(map_adm_1.values));
 				} else {
@@ -46,31 +46,41 @@ global {
 					I <- I + 1;
 					S <- S - 1;
 					create DetectedCase returns: D {
-						if(statistic_cases[2, row_idx] = "cach ly" or statistic_cases[4, row_idx] = "cach ly"){
-							confined<-true;
+						if (statistic_cases[2, row_idx] = "cach ly") {
+							confined <- true;
 						}
+
 						name <- (statistic_cases[0, row_idx]);
 						origin1 <- myself;
 						if (length(adm2) > 0) {
 							origin2 <- first(adm2);
 							origin2.circle_bound <- circle(origin2.size_of_circle_2) at_location origin2.location;
-						} 
+						}
 
 						detected_date <- date(statistic_cases[3, row_idx]);
-						
 					}
 
+					D <- D where (!each.confined);
 					circle_bound <- circle(size_of_circle_1) at_location location;
-					ask D{do change_zoom;}
-					detected_cases_F0 << first(D);
- 					my_risk_color <-hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1); 
-					if (length(adm2) > 0) {
-						first(adm2).detected_cases_F0 << first(D);
-						ask adm2{
-							 my_risk_color <-hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1); 
-						}
-						
+					ask D {
+						do change_zoom;
 					}
+
+					if (statistic_cases[2, row_idx] != "cach ly") {
+						detected_cases_F0 << first(D);
+						risk_point <- self.accessment();
+						my_risk_color <- hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1);
+						if (length(adm2) > 0) {
+							first(adm2).detected_cases_F0 << first(D);
+							ask adm2 {
+								risk_point <- self.accessment();
+								my_risk_color <- hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1);
+							}
+
+						}
+
+					}
+
 				}
 
 				statistic_cases_added << row_idx;

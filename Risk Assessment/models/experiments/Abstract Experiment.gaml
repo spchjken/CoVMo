@@ -34,6 +34,7 @@ experiment AbstractExp virtual: true {
 	parameter "Thư mục lưu kết quả" category: "Hiển thị" var: a_file;
 	user_command "Xuất kết quả" category: "Hiển thị" color:#darkblue {ask world {do writing_results;}}
 //	parameter "Disable following parameters" category: "Hiển thị" var: a_boolean_to_disable_parameters disables: [a_file];
+	parameter "Xem lưu lượng giao thông" category: "Hiển thị" var: show_traffic <- true ;
 //	parameter "Xem xếp hạng" category: "Hiển thị" var: show_ranking <- true ;
 //	parameter "Số lượng hiển thị xếp hạng" category: "Hiển thị" var: nb_ranking_list <- 5 min:1 max:10;
 //	parameter "Mức tăng cấp quốc gia" category: "Hiển thị" var: nb_increase_size_1 <- 10;
@@ -42,8 +43,8 @@ experiment AbstractExp virtual: true {
 	output {
 		display "default_mixed_wander_display" synchronized: false background: background virtual:true draw_env: false {
 			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
-			overlay position: {100, 0} size: {270 #px, 400 #px} transparency: 0.2 position: {0, 0, 0.01} {
-				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (AdministrativeBound_1 sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
+			overlay position: {100, 0} size: {270 #px, 420 #px} transparency: 0.2 position: {0, 0, 0.01} {
+				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (length(DetectedCase))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
 				text_color;
 				draw ("" + current_date) font: info at: {20 #px, 80 #px} anchor: #top_left color: text_color;
 				if (show_ranking) {
@@ -59,9 +60,9 @@ experiment AbstractExp virtual: true {
 
 			}
 
-			species AdministrativeBound_1 aspect: simple position: {0, 0, 0.001}; // transparency:0.1;
-			species AdministrativeBound_2 aspect: simple position: {0, 0, 0.002}; // transparency:0.1;
-			species People position: {0, 0, 0.003};
+			species AdministrativeBound_1 aspect: simple position: {0, 0, 0.001} transparency:0.5;
+			species AdministrativeBound_2 aspect: simple position: {0, 0, 0.002} transparency:0.5;
+			species People position: {0, 0, 0.003} transparency: 0.5;
 			species DetectedCase position: {0, 0, 0.004};
 			event mouse_move action: move;
 			graphics "Info" position: {0, 0, 0.005} {

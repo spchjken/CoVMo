@@ -23,13 +23,15 @@ global {
 		write data;
 		write map_adm_1;
 		loop i from: 0 to: data.rows - 1 {
-						write "" + data[0, i] + " " + data[1, i];
+			write "" + data[0, i] + " " + data[1, i];
 			ask map_adm_1["" + data[0, i]] {
 				possible_transport <+ first(map_adm_1["" + data[1, i]]);
+				flow_capacity <- int(data[2, i]);
 			}
 
 			ask map_adm_1["" + data[1, i]] {
 				possible_transport <+ first(map_adm_1["" + data[0, i]]);
+				flow_capacity <- int(data[2, i]);
 			}
 
 		}
