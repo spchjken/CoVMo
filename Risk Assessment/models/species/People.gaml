@@ -38,7 +38,7 @@ species People skills: [moving] {
 
 	aspect default {
 		if (show_traffic) {
-			draw shape empty: true color: mycolor rotate: heading;
+			draw shape empty: true color: mycolor;
 		}
 
 	}

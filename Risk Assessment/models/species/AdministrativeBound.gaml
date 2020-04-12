@@ -21,7 +21,7 @@ species AdministrativeBound parent: EpidemiologicHost {
 	string VARNAME_3;
 	list<AdministrativeBound> neighbors <- [];
 	list<DetectedCase> detected_cases_F0 <- [];
-	int F1 -> {int(20 * length(detected_cases_F0))};
+	int F1 -> {int(3 * length(detected_cases_F0))};
 	int extern;
 	int foreigner;
 	int moving;
@@ -43,7 +43,7 @@ species AdministrativeBound parent: EpidemiologicHost {
 	rgb my_risk_color; //	rgb mycolor -> {hsb(0, I/N, 1)};
 	float size_of_circle_1 -> {(1 #km + ((length(detected_cases_F0) / nb_increase_size_1) < 30 ? (length(detected_cases_F0) / nb_increase_size_1) #km : 30 #km))};
 	float size_of_circle_2 -> {(1 #km + ((length(detected_cases_F0) / nb_increase_size_1) < 30 ? (length(detected_cases_F0) / nb_increase_size_1) #km : 30 #km)) * ((world.shape.perimeter) / 8000000)};
-	float size_of_circle_3 -> {(1 #km + ((length(detected_cases_F0) / nb_increase_size_1) < 30 ? (length(detected_cases_F0) / nb_increase_size_1) #km : 30 #km)) * ((world.shape.perimeter) / 5000000)};
+	float size_of_circle_3 -> {(1 #km + ((length(detected_cases_F0) / nb_increase_size_1) < 30 ? (length(detected_cases_F0) / nb_increase_size_1) #km : 30 #km)) * ((world.shape.perimeter) / 20000000)};
 	//	map<int,float> c_size<-[5::size_of_circle_1,8::size_of_circle_2,11::size_of_circle_3];
 	float accessment {
 		return weight_risk_social * get_risk_social() + weight_risk_contact * get_risk_contact() + weight_risk_policy * get_risk_policy();
@@ -149,19 +149,21 @@ species AdministrativeBound_1 parent: AdministrativeBound {
 	list<AdministrativeBound_1> possible_transport<-[];
 	int flow_capacity<-1;
 	reflex transportation when:!empty(possible_transport) and show_traffic{
-		create People{
-			condense<-myself.flow_capacity;
-			location<-myself.location;
-			my_target<-any(myself.possible_transport).location;
-			do init;
+		loop p over:possible_transport{			
+			create People{
+				condense<-myself.flow_capacity;
+				location<-myself.location;
+				my_target<-p.location;
+				do init;
+			}
 		}
 
 	}
 
 	aspect simple {
 	//		draw shape color: I>0?#red:#white border: #black;
-		if (#zoom <= 6) {
-			draw shape color: my_risk_color border:#gray;
+		if (#zoom <= zoom1) {
+			draw shape color: my_risk_color border:#black;
 //			draw shape color: #white empty: true border: #gray;
 			//			draw current_name at: location color: #white;
 		}
@@ -174,8 +176,8 @@ species AdministrativeBound_2 parent: AdministrativeBound {
 
 	aspect simple {
 	//		draw shape color: I>0?#red:#white border: #black;
-		if (#zoom > 6) { //} and #zoom<=9) {
-			draw shape color: my_risk_color border:#gray;
+		if (#zoom > zoom1 and #zoom<=zoom2) {
+			draw shape color: my_risk_color border:#black;
 //			draw shape color: #white empty: true border: #gray;
 			//			draw current_name at: location color: #white;
 		}
@@ -188,8 +190,9 @@ species AdministrativeBound_3 parent: AdministrativeBound {
 
 	aspect simple {
 	//		draw shape color: I>0?#red:#white border: #black;
-		if (#zoom > 9) {
-			draw shape color: #white empty: true border: #gray;
+		if (#zoom > zoom2) {
+			draw shape color: my_risk_color border:#black;
+//			draw shape color: #white empty: true border: #gray;
 			//			draw current_name at: location color: #white;
 		}
 

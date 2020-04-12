@@ -20,8 +20,6 @@ global {
 
 		file trans_csv_file <- csv_file(fpath, false);
 		matrix data <- (trans_csv_file.contents);
-		write data;
-		write map_adm_1;
 		loop i from: 0 to: data.rows - 1 {
 			write "" + data[0, i] + " " + data[1, i];
 			ask map_adm_1["" + data[0, i]] {
