@@ -6,16 +6,15 @@
 ***/
 @ no_experiment model DetectedCase
 
+import "People.gaml"
 import "AdministrativeBound.gaml"
-species DetectedCase skills: [moving] {
+species DetectedCase parent:People {
 	date detected_date;
-	bool confined<-false;
-	bool recovered<-false;
+	bool infected<-true;
 	AdministrativeBound origin;
 	AdministrativeBound_1 origin1;
 	AdministrativeBound_2 origin2;
 	rgb mycolor <- hsb(0, 0.5 + (rnd(5) / 10), 1);
-	float size <- 2 #km;
 	float spd <- 0.25#m;
 	//	init{
 	//		do change_zoom;

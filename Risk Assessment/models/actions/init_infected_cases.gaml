@@ -35,6 +35,7 @@ global {
 
 					circle_bound <- circle(size_of_circle_1) at_location location;
 					detected_cases_F0 <- detected_cases_F0 + D;
+					my_risk_color<-hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1);
 				}
 
 				rgb null <- mycolor;

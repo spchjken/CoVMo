@@ -15,7 +15,7 @@ global {
 	float step <- 15 #minute;
 	float c_zoom<-1.0;
 	//thoi gian khoi dau mo hinh
-	date starting_date <- date([2020, 3, 31, 0, 0]);
+	date starting_date <- date([2020, 3, 1, 0, 0]);
 
 	// thoi gian virus ton tai va gay nguy hiem o khu vuc benh nhan di qua (tinh theo gio)
 	int v_time_life <- 24;
@@ -31,7 +31,7 @@ global {
 	geometry shape <- envelope(provinces_shp_file);
 	
 	
-	bool show_ranking<-false;
+	bool show_ranking<-true;
 	int nb_ranking_list <- 10;
 	file a_file <- folder("../../results/");
 	bool a_boolean_to_disable_parameters <- true;
@@ -73,7 +73,8 @@ global {
 	map<string,list<AdministrativeBound_3>> map_adm_3;// <- AdministrativeBound_1 group_by (each.VARNAME_2+" "+each.VARNAME_3);
 	
 	
-	point target;	
+	point info_target;
+	string info_text<-"";	
 	geometry zone <- circle(0.1#m);
 	AdministrativeBound under_mouse_agent;
 	

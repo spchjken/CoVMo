@@ -9,6 +9,7 @@
 model Functions
 import "actions/initialisation.gaml"
 import "actions/init_demograph.gaml"
+import "actions/init_transportation.gaml"
 import "actions/init_infected_cases.gaml"
 import "actions/retrieve_cases.gaml"
 import "actions/move.gaml"

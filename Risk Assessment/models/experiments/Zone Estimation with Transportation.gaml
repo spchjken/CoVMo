@@ -43,7 +43,7 @@ experiment Pandemic2020 type: gui parent: AbstractExp autorun:true{
 
 	output {
 		layout #split consoles: false editors: false navigator: false tray: false tabs: false toolbars: true;
-		display "Mixed" parent: default_mixed_wander_display synchronized:true type:opengl {
+		display "Mixed" parent: default_mixed_wander_display synchronized:true {
 			
 		}
 //		display "Detected" synchronized: false background: background  draw_env: false {

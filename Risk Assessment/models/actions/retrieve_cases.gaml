@@ -63,10 +63,14 @@ global {
 					circle_bound <- circle(size_of_circle_1) at_location location;
 					ask D{do change_zoom;}
 					detected_cases_F0 << first(D);
+ 					my_risk_color <-hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1); 
 					if (length(adm2) > 0) {
 						first(adm2).detected_cases_F0 << first(D);
+						ask adm2{
+							 my_risk_color <-hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1); 
+						}
+						
 					}
-
 				}
 
 				statistic_cases_added << row_idx;

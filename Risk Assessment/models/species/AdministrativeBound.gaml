@@ -40,7 +40,7 @@ species AdministrativeBound parent: EpidemiologicHost {
 	string parent_varname;
 	geometry circle_bound;
 	//	rgb mycolor -> {hsb(0, (risk_assessment_point > 25 ? 0.1 : 0) + (I > 25 ? 25 : I) / 29, 1)}; //	rgb mycolor -> {hsb(0, I/N, 1)};
-	rgb my_risk_color -> {hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1)}; //	rgb mycolor -> {hsb(0, I/N, 1)};
+	rgb my_risk_color; //	rgb mycolor -> {hsb(0, I/N, 1)};
 	float size_of_circle_1 -> {(1 #km + ((length(detected_cases_F0) / nb_increase_size_1) < 30 ? (length(detected_cases_F0) / nb_increase_size_1) #km : 30 #km))};
 	float size_of_circle_2 -> {(1 #km + ((length(detected_cases_F0) / nb_increase_size_1) < 30 ? (length(detected_cases_F0) / nb_increase_size_1) #km : 30 #km)) * ((world.shape.perimeter) / 8000000)};
 	float size_of_circle_3 -> {(1 #km + ((length(detected_cases_F0) / nb_increase_size_1) < 30 ? (length(detected_cases_F0) / nb_increase_size_1) #km : 30 #km)) * ((world.shape.perimeter) / 5000000)};
@@ -146,11 +146,18 @@ species AdministrativeBound parent: EpidemiologicHost {
 }
 
 species AdministrativeBound_1 parent: AdministrativeBound {
+	list<AdministrativeBound_1> possible_transport<-[];
+	reflex transportation when:!empty(possible_transport){
+		create People{
+			location<-myself.location;
+			my_target<-any(myself.possible_transport).location;
+		}
+	}
 
 	aspect simple {
 	//		draw shape color: I>0?#red:#white border: #black;
 		if (#zoom <= 6) {
-			draw shape color: #white empty: true border: #gray;
+			draw shape color: my_risk_color border:#gray;
 			//			draw current_name at: location color: #white;
 		}
 
