@@ -11,7 +11,7 @@ import "../Global.gaml"
 global {
 	font default <- font("Helvetica", 20, #bold);
 	font info <- font("Helvetica", 18, #bold);
-	rgb text_color <- world.color.brighter.brighter.brighter;
+	rgb text_color <- world.color.darker.darker.darker;
 	rgb background <- world.color.darker.darker;
 }
 
@@ -122,9 +122,9 @@ experiment AbstractExp virtual: true {
 //
 //			}
 
-			species AdministrativeBound_1 aspect: simple position: {0, 0, 0.001};
-			species AdministrativeBound_2 aspect: simple position: {0, 0, 0.002};
-			species AdministrativeBound_3 aspect: simple position: {0, 0, 0.003};
+			species AdministrativeBound_1 aspect: simple position: {0, 0, 0.001} transparency: 0.001 ;
+			species AdministrativeBound_2 aspect: simple position: {0, 0, 0.002} transparency: 0.001 ;
+			species AdministrativeBound_3 aspect: simple position: {0, 0, 0.003} transparency: 0.001 ;
 			species People position: {0, 0, 0.004};
 			species DetectedCase position: {0, 0, 0.005};
 			event mouse_move action: when_mouse_move;

@@ -17,6 +17,7 @@ global {
 			do initialisation;
 			do init_infected_cases;
 			do init_demograph; //			do init_transportation;
+			do trigger_color;
  }
 
 	}
