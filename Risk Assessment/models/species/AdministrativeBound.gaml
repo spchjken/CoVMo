@@ -95,7 +95,7 @@ species AdministrativeBound parent: EpidemiologicHost {
 
 	aspect simple {
 	//		draw shape color: I>0?#red:#white border: #black;
-		draw shape color: #white empty: true border: #white;
+		draw shape color: my_risk_color border: #white;
 		//		if (#zoom > 3) {
 		//			draw current_name at: location color: #white;
 		//		}

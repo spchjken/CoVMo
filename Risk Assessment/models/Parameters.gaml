@@ -74,7 +74,7 @@ global {
 	
 	
 	point target;	
-	geometry zone <- circle(1#m);
+	geometry zone <- circle(0.1#m);
 	AdministrativeBound under_mouse_agent;
 	
 	int nb_increase_size_1<-10;

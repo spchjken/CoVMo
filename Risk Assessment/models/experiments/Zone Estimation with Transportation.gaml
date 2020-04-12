@@ -38,7 +38,7 @@ experiment Pandemic2020 type: gui parent: AbstractExp autorun:true{
 
 		}
 
-		create simulation with: [do_init::true, GIS_id::lst_GIS_id[index], provinces_shp_file::shape_file(filepath)];
+		create simulation with: [seed::0.8212816425168338,do_init::true, GIS_id::lst_GIS_id[index], provinces_shp_file::shape_file(filepath)];
 	}
 
 	output {

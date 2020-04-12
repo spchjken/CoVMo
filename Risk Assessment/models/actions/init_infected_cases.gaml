@@ -27,6 +27,7 @@ global {
 				I <- float(data[2, i]);
 				if (I > 0) {
 					create DetectedCase number: I returns: D {
+						recovered<-true;
 						origin1 <- myself;
 						origin2 <- first(AdministrativeBound_2 where(each.VARNAME_1= myself.VARNAME_1));
 						location <- any_location_in(origin1.circle_bound);

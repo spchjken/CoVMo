@@ -42,8 +42,8 @@ experiment AbstractExp virtual: true {
 	output {
 		display "default_mixed_wander_display" synchronized: false background: background virtual: true draw_env: false {
 			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
-			overlay position: {100, 0} size: {270 #px, 400 #px} transparency: 0.2 {
-				c_zoom<-#zoom;
+			overlay position: {100, 0} size: {270 #px, 400 #px} transparency: 0.2  position: {0, 0, 0.01} {
+				
 				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (AdministrativeBound_1 sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
 				text_color;
 				draw ("" + current_date) font: info at: {20 #px, 80 #px} anchor: #top_left color: text_color;
@@ -60,12 +60,16 @@ experiment AbstractExp virtual: true {
 
 			}
 
-			species AdministrativeBound_1 aspect: simple  position: {0, 0, 0.001} ;//transparency:0.1;
-			species AdministrativeBound_2 aspect: simple  position: {0, 0, 0.002} ;//transparency:0.1;
+			species AdministrativeBound_1 aspect: simple  position: {0, 0, 0.001};// transparency:0.1;
+			species AdministrativeBound_2 aspect: simple  position: {0, 0, 0.002};// transparency:0.1;
 			species DetectedCase  position: {0, 0, 0.003};
 			event mouse_move action: move;
 			graphics "Info" position: {0, 0, 0.004}  {
-				if (#zoom >= 3) {
+				if(c_zoom!=#zoom){
+					c_zoom<-#zoom;
+					ask world{do change_zoom_all;}
+				}
+				if (#zoom >= 1.5) {
 					if (under_mouse_agent != nil) {
 						string str <- (under_mouse_agent.parent_varname!="Viet Nam"?(under_mouse_agent.parent_varname+", "):"")+under_mouse_agent.current_varname;
 						str <- str + ": " + length(under_mouse_agent.detected_cases_F0);

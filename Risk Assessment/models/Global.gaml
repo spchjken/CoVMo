@@ -23,10 +23,14 @@ global {
 
 	}
 
-
+	action change_zoom_all{
+		ask DetectedCase{
+			do change_zoom;
+		}
+	}
 
 	reflex run {
-		do retrieve_cases(current_date);
+		do retrieve_cases;
 	}
  
 }
