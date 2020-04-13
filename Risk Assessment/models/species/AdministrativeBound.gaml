@@ -25,7 +25,7 @@ species AdministrativeBound parent: EpidemiologicHost {
 	int extern;
 	int foreigner;
 	int moving;
-	int high_contact;
+	float high_contact;
 	int low_contact;
 	int social_distancing;
 	int traffic_in;
@@ -161,7 +161,7 @@ species AdministrativeBound_1 parent: AdministrativeBound {
 
 	aspect simple {
 		if (#zoom <= zoom1) {
-			draw shape color: my_risk_color border:#lightgray;
+			draw shape color: my_risk_color border:#gray;
 //			draw shape color: #white empty: true border: #gray;
 			//			draw current_name at: location color: #white;
 		}
@@ -176,7 +176,7 @@ species AdministrativeBound_2 parent: AdministrativeBound {
 	aspect simple {
 	//		draw shape color: I>0?#red:#white border: #black;
 		if (#zoom > zoom1 and #zoom<=zoom2) {
-			draw shape color: my_risk_color border:#lightgray;
+			draw shape color: my_risk_color border:#gray;
 //			draw shape color: #white empty: true border: #gray;
 			//			draw current_name at: location color: #white;
 		}
@@ -190,7 +190,7 @@ species AdministrativeBound_3 parent: AdministrativeBound {
 	aspect simple {
 	//		draw shape color: I>0?#red:#white border: #black;
 		if (#zoom > zoom2) {
-			draw shape color: my_risk_color border:#lightgray;
+			draw shape color: my_risk_color border:#gray;
 //			draw shape color: #white empty: true border: #gray;
 			//			draw current_name at: location color: #white;
 		}

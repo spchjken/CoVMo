@@ -24,11 +24,13 @@ global {
 			ask map_adm_1["" + data[0, i]] {
 				possible_transport <+ first(map_adm_1["" + data[1, i]]);
 				flow_capacity <- int(data[2, i]);
+				traffic_in<-flow_capacity*10;
 			}
 
 			ask map_adm_1["" + data[1, i]] {
 				possible_transport <+ first(map_adm_1["" + data[0, i]]);
 				flow_capacity <- int(data[2, i]);
+				traffic_in<-flow_capacity*10;
 			}
 
 		}

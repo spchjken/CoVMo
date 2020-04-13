@@ -39,7 +39,7 @@ global {
 				} else {
 					adm2 <- map_adm_2["" + statistic_cases[2, row_idx] + " " + statistic_cases[4, row_idx]];
 				}
-				
+
 				if (statistic_cases[5, row_idx] = "" or statistic_cases[5, row_idx] = "cach ly") {
 					adm3 <- (AdministrativeBound_3 where (each.VARNAME_2 = statistic_cases[4, row_idx]));
 				} else {
@@ -62,7 +62,8 @@ global {
 							origin2 <- first(adm2);
 							origin2.circle_bound <- circle(origin2.size_of_circle_2) at_location origin2.location;
 						}
-						if (first(adm3)!=nil) {
+
+						if (first(adm3) != nil) {
 							origin3 <- first(adm3);
 							origin3.circle_bound <- circle(origin3.size_of_circle_3) at_location origin3.location;
 						}
@@ -78,18 +79,30 @@ global {
 
 					if (statistic_cases[2, row_idx] != "cach ly") {
 						detected_cases_F0 << first(D);
+						ask neighbors {
+							high_contact <- high_contact + 0.5;
+						}
+
 						risk_point <- self.accessment();
 						my_risk_color <- hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1);
 						if (length(adm2) > 0) {
 							first(adm2).detected_cases_F0 << first(D);
+							ask first(adm2).neighbors {
+								high_contact <- high_contact + 0.5;
+							}
+
 							ask adm2 {
 								risk_point <- self.accessment();
 								my_risk_color <- hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1);
 							}
 
 						}
+
 						if (length(adm3) > 0) {
 							first(adm3).detected_cases_F0 << first(D);
+							ask first(adm3).neighbors {
+								high_contact <- high_contact + 0.5;
+							}
 							ask adm3 {
 								risk_point <- self.accessment();
 								my_risk_color <- hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1);
