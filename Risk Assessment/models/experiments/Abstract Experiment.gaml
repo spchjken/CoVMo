@@ -106,7 +106,7 @@ experiment AbstractExp virtual: true {
 	output {
 		display "default_mixed_wander_display" synchronized: false background: background virtual: true draw_env: false {
 			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
-			overlay position: {100, 0} size: {270 #px, 420 #px} transparency: 0.25  {
+			overlay position: {100, 0} size: {270 #px, 420 #px} transparency: 1  {
 				if (show_ranking) {
 					draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (length(DetectedCase))) font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
 					draw ("" + current_date) font: info at: {20 #px, 80 #px} anchor: #top_left color: text_color;

@@ -8,7 +8,7 @@
 
 import "AdministrativeBound.gaml"
 species People skills: [moving] {
-	float size <- 2 #km;
+	float size <- 1 #km;
 	bool confined <- false;
 	bool recovered <- false;
 	bool infected <- false;
@@ -20,7 +20,7 @@ species People skills: [moving] {
 	int condense<-1;
 	action init {
 		do goto target: my_target speed: spd;
-		geometry c <- (rectangle((size * (10 + rnd(4)))/(c_zoom / 5),(size * (1 + rnd(1)))/(c_zoom / 5)) at_location location )rotated_by heading;
+		geometry c <- (rectangle(((size) * (5 + rnd(4)))/(c_zoom / 5),((size+((condense/20)#km)) * (1 + rnd(1)))/(c_zoom / 5)) at_location location )rotated_by heading;
 		list cc <- [];
 		loop times: condense {
 			cc <+ triangle(size/(c_zoom / 5)) at_location any_location_in(c);

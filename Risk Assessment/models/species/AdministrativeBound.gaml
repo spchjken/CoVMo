@@ -160,12 +160,12 @@ species AdministrativeBound_1 parent: AdministrativeBound {
 	}
 
 	aspect simple {
-	//		draw shape color: I>0?#red:#white border: #black;
 		if (#zoom <= zoom1) {
 			draw shape color: my_risk_color border:#lightgray;
 //			draw shape color: #white empty: true border: #gray;
 			//			draw current_name at: location color: #white;
 		}
+//			draw circle(2#km) color:  #red  border: #black;
 
 	}
 

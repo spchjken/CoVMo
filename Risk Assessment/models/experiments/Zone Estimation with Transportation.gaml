@@ -9,8 +9,10 @@ model Corona
 import "Abstract Experiment.gaml"
 experiment Pandemic2020 type: gui parent: AbstractExp autorun: true {
 
-	action init {
-		gama.pref_display_visible_agents <- true;
+	init {
+		gama.pref_display_visible_agents <- true;	
+		gama.pref_display_zoom_factor <- 0.25;
+		
 	} 
 	output {
 		layout #split consoles: false editors: false navigator: false tray: false tabs: false toolbars: true;
