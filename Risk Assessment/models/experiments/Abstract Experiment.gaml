@@ -97,7 +97,7 @@ experiment AbstractExp virtual: true {
 
 	}
 	//	parameter "Disable following parameters" category: "Hiển thị" var: a_boolean_to_disable_parameters disables: [a_file];
-	parameter "Xem lưu lượng giao thông" category: "Hiển thị" var: show_traffic <- false;
+	parameter "Xem lưu lượng giao thông" category: "Hiển thị" var: show_traffic <- true;
 	parameter "Xem xếp hạng" category: "Hiển thị" var: show_ranking <- true;
 	//	parameter "Số lượng hiển thị xếp hạng" category: "Hiển thị" var: nb_ranking_list <- 5 min:1 max:10;
 	//	parameter "Mức tăng cấp quốc gia" category: "Hiển thị" var: nb_increase_size_1 <- 10;

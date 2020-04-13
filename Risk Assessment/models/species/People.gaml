@@ -19,10 +19,11 @@ species People skills: [moving] {
 	rgb mycolor <- hsb(240 / 360, 0.5 + (rnd(5) / 10), 1);
 	int condense<-1;
 	action init {
-		geometry c <- square(size * (1 + rnd(4))) at_location location;
+		do goto target: my_target speed: spd;
+		geometry c <- (rectangle((size * (10 + rnd(4)))/(c_zoom / 5),(size * (1 + rnd(1)))/(c_zoom / 5)) at_location location )rotated_by heading;
 		list cc <- [];
 		loop times: condense {
-			cc <+ triangle(size) at_location any_location_in(c);
+			cc <+ triangle(size/(c_zoom / 5)) at_location any_location_in(c);
 		}
 
 		shape <- union(cc);
@@ -38,7 +39,7 @@ species People skills: [moving] {
 
 	aspect default {
 		if (show_traffic) {
-			draw shape empty: true color: mycolor;
+			draw shape empty: true color: mycolor ;
 		}
 
 	}
