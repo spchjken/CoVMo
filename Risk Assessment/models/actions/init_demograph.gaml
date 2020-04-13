@@ -14,41 +14,19 @@ global {
 
 	action init_demograph {
 		string fpath1 <- "../../data/demographie/VNM_1.csv";
-//		if (!file_exists(fpath1)) {
-			ask AdministrativeBound_1 {
-				extern <- rnd(100);
-				foreigner <- rnd(100);
-				moving <- rnd(100);
-				high_contact <- rnd(100);
-				low_contact <- rnd(100);
-				social_distancing <- rnd(100);
-				traffic_in <- rnd(100);
-				emphasize <- rnd(100);
-			}
-	ask AdministrativeBound_2 {
-				extern <- rnd(100);
-				foreigner <- rnd(100);
-				moving <- rnd(100);
-				high_contact <- rnd(100);
-				low_contact <- rnd(100);
-				social_distancing <- rnd(100);
-				traffic_in <- rnd(100);
-				emphasize <- rnd(100);
-			}
-	ask AdministrativeBound_3 {
-				extern <- rnd(100);
-				foreigner <- rnd(100);
-				moving <- rnd(100);
-				high_contact <- rnd(100);
-				low_contact <- rnd(100);
-				social_distancing <- rnd(100);
-				traffic_in <- rnd(100);
-				emphasize <- rnd(100);
-			}
-
-//			return;
-//		}
-
+		//		if (!file_exists(fpath1)) {
+		ask AdministrativeBound_1 + AdministrativeBound_2 +AdministrativeBound_3{
+			extern <- rnd(100);
+			foreigner <- rnd(100);
+			moving <- rnd(100);
+			high_contact <- rnd(100);
+			low_contact <- rnd(100);
+			social_distancing <- rnd(100);
+			traffic_in <- rnd(100);
+			emphasize <- rnd(100);
+		} 
+		//			return;
+		//		}
 		file demo_csv_file1 <- csv_file(fpath1, true);
 		matrix data <- (demo_csv_file1.contents);
 		loop i from: 0 to: data.rows - 1 {
@@ -70,8 +48,8 @@ global {
 		file demo_csv_file2 <- csv_file(fpath2, true);
 		data <- (demo_csv_file2.contents);
 		loop i from: 0 to: data.rows - 1 {
-//						write "" + data[0, i] + " " + data[1, i];
-			ask map_adm_2["" + data[0, i] + " " + data[1, i]] { 
+		//						write "" + data[0, i] + " " + data[1, i];
+			ask map_adm_2["" + data[0, i] + " " + data[1, i]] {
 				extern <- int(data[2, i]);
 				foreigner <- int(data[3, i]);
 				moving <- int(data[4, i]);
@@ -118,7 +96,7 @@ global {
 			}
 
 		}
- 
+
 	}
 
 }

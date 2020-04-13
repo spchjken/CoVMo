@@ -26,7 +26,8 @@ global {
 	shape_file provinces_shp_file <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_3.shp");
 	shape_file provinces_shp_file1 <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_1.shp");
 	shape_file provinces_shp_file2 <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_2.shp");
-	shape_file provinces_shp_file3 <- shape_file("../includes/gadm36_VNM_shp/generated/VNM.27.16_1.shp");
+	shape_file provinces_shp_file3 <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_3.shp");
+//	shape_file provinces_shp_file3 <- shape_file("../includes/gadm36_VNM_shp/generated/VNM.27.16_1.shp");
 
 	list<int> statistic_cases_added<-[];
 	geometry shape <- envelope(provinces_shp_file);
@@ -75,9 +76,13 @@ global {
 	map<string,list<AdministrativeBound_3>> map_adm_3;// <- AdministrativeBound_1 group_by (each.VARNAME_2+" "+each.VARNAME_3);
 	map<string,list<string>> quarantine_zone;
 	
-	point info_target;
+	geometry info_target1;
+	geometry info_target2;
+	geometry info_target3;
 	string info_text<-"";	
-	geometry zone <- circle(0.1#m);
+	geometry zone1 <- circle(0.1#m);
+	geometry zone2 <- circle(0.1#m);
+	geometry zone3 <- circle(0.001#m);
 	AdministrativeBound under_mouse_agent;
 	
 	int nb_increase_size_1<-10;
