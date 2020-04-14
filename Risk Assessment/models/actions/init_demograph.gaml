@@ -19,7 +19,7 @@ global {
 			extern <- rnd(100);
 			foreigner <- rnd(100);
 			moving <- rnd(100);
-			high_contact <- rnd(100);
+			high_contact <- rnd(100.0);
 			low_contact <- rnd(100);
 			social_distancing <- rnd(100);
 			traffic_in <- rnd(100);
@@ -35,7 +35,7 @@ global {
 				extern <- int(data[2, i]);
 				foreigner <- int(data[3, i]);
 				moving <- int(data[4, i]);
-				high_contact <- int(data[5, i]);
+				high_contact <- float(data[5, i]);
 				low_contact <- int(data[6, i]);
 				social_distancing <- int(data[7, i]);
 				traffic_in <- int(data[8, i]);
@@ -53,7 +53,7 @@ global {
 				extern <- int(data[2, i]);
 				foreigner <- int(data[3, i]);
 				moving <- int(data[4, i]);
-				high_contact <- int(data[5, i]);
+				high_contact <- float(data[5, i]);
 				low_contact <- int(data[6, i]);
 				social_distancing <- int(data[7, i]);
 				traffic_in <- int(data[8, i]);
@@ -71,7 +71,7 @@ global {
 				extern <- int(data[2, i]);
 				foreigner <- int(data[3, i]);
 				moving <- int(data[4, i]);
-				high_contact <- int(data[5, i]);
+				high_contact <- float(data[5, i]);
 				low_contact <- int(data[6, i]);
 				social_distancing <- int(data[7, i]);
 				traffic_in <- int(data[8, i]);
@@ -88,7 +88,7 @@ global {
 				extern <- int(data[2, i]);
 				foreigner <- int(data[3, i]);
 				moving <- int(data[4, i]);
-				high_contact <- int(data[5, i]);
+				high_contact <- float(data[5, i]);
 				low_contact <- int(data[6, i]);
 				social_distancing <- int(data[7, i]);
 				traffic_in <- int(data[8, i]);

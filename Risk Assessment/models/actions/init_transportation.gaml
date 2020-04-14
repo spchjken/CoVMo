@@ -20,7 +20,7 @@ global {
 		file trans_csv_file <- csv_file(fpath, false);
 		matrix data <- (trans_csv_file.contents);
 		loop i from: 0 to: data.rows - 1 {
-			write "" + data[0, i] + " " + data[1, i];
+//			write "" + data[0, i] + " " + data[1, i];
 			ask map_adm_1["" + data[0, i]] {
 				possible_transport <+ first(map_adm_1["" + data[1, i]]);
 				flow_capacity <- int(data[2, i]);

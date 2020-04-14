@@ -15,7 +15,7 @@ experiment Pandemic2020 type: gui parent: AbstractExp autorun: true {
 		
 	} 
 	output {
-		layout #split consoles: false editors: false navigator: false tray: false tabs: false toolbars: true;
+		layout #split consoles: true editors: false navigator: false tray: false tabs: false toolbars: true;
 		display "Mixed" parent: default_mixed_wander_display synchronized: false type: opengl {
 		} 
 	}

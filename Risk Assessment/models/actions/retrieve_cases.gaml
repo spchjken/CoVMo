@@ -28,6 +28,7 @@ global {
 				list<AdministrativeBound_1> adm1;
 				list<AdministrativeBound_2> adm2;
 				list<AdministrativeBound_3> adm3;
+//				write ""+statistic_cases[2, row_idx]+" "+statistic_cases[4, row_idx]+" "+statistic_cases[5, row_idx];
 				if (statistic_cases[2, row_idx] = "" or statistic_cases[2, row_idx] = "cach ly") {
 					adm1 <- (first(map_adm_1.values));
 				} else {
@@ -71,6 +72,7 @@ global {
 						detected_date <- date(statistic_cases[3, row_idx]);
 					}
 
+//					write ""+int(first(D));
 					D <- D where (!each.confined);
 					circle_bound <- circle(size_of_circle_1) at_location location;
 					ask D {
@@ -111,7 +113,6 @@ global {
 						}
 
 					}
-
 				}
 
 				statistic_cases_added << row_idx;
