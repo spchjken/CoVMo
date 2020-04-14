@@ -99,14 +99,14 @@ experiment AbstractExp virtual: true {
 	//	parameter "Disable following parameters" category: "Hiển thị" var: a_boolean_to_disable_parameters disables: [a_file];
 	parameter "Xem lưu lượng giao thông" category: "Hiển thị" var: show_traffic <- false;
 	parameter "Xem xếp hạng" category: "Hiển thị" var: show_ranking <- true;
-	//	parameter "Số lượng hiển thị xếp hạng" category: "Hiển thị" var: nb_ranking_list <- 5 min:1 max:10;
+	parameter "Số lượng hiển thị xếp hạng" category: "Hiển thị" var: nb_ranking_list <- 5 min: 1 max: 63;
 	//	parameter "Mức tăng cấp quốc gia" category: "Hiển thị" var: nb_increase_size_1 <- 10;
 	//	parameter "Mức tăng cấp thành phố" category: "Hiển thị" var: nb_increase_size_2 <- 5;
 	//	parameter "Mức tăng cấp quận" category: "Hiển thị" var: nb_increase_size_3 <- 1;
 	output {
 		display "default_mixed_wander_display" synchronized: false background: background virtual: true draw_env: false {
 			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
-			overlay position: {100, 0} size: {270 #px, 420 #px} transparency: 0.8  {
+			overlay position: {100, 0} size: {270 #px, 420 #px} transparency: 0.8 {
 				if (show_ranking) {
 					draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (length(DetectedCase))) font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
 					draw ("" + current_date) font: info at: {20 #px, 80 #px} anchor: #top_left color: text_color;
@@ -122,9 +122,9 @@ experiment AbstractExp virtual: true {
 
 			}
 
-			species AdministrativeBound_1 aspect: simple position: {0, 0, 0.001}   ;
-			species AdministrativeBound_2 aspect: simple position: {0, 0, 0.002}   ;
-			species AdministrativeBound_3 aspect: simple position: {0, 0, 0.003}   ;
+			species AdministrativeBound_1 aspect: simple position: {0, 0, 0.001};
+			species AdministrativeBound_2 aspect: simple position: {0, 0, 0.002};
+			species AdministrativeBound_3 aspect: simple position: {0, 0, 0.003};
 			species People position: {0, 0, 0.004};
 			species DetectedCase position: {0, 0, 0.005};
 			event mouse_move action: when_mouse_move;
@@ -138,7 +138,7 @@ experiment AbstractExp virtual: true {
 				}
 
 				if (#zoom >= 1.5) {
-					if (under_mouse_agent != nil) { 
+					if (under_mouse_agent != nil) {
 						draw info_text at: #user_location empty: false perspective: false font: info color: #black;
 					}
 
@@ -149,83 +149,83 @@ experiment AbstractExp virtual: true {
 		}
 
 		display "default_mixed_display" synchronized: false background: background virtual: true draw_env: false {
-//			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
-//			overlay position: {100, 0} size: {270 #px, 400 #px} transparency: 0.2 {
-//				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (AdministrativeBound_1 sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
-//				text_color;
-//				draw ("" + current_date) font: info at: {20 #px, 80 #px} anchor: #top_left color: text_color;
-//				draw ("Xếp hạng nguy cơ:") font: default at: {20 #px, 110 #px} anchor: #top_left color: text_color;
-//				if (show_ranking) {
-//					int y <- 130;
-//					list<AdministrativeBound_1> candi <- AdministrativeBound_1 sort_by (-each.risk_point);
-//					loop i from: 0 to: nb_ranking_list - 1 {
-//						y <- y + 25;
-//						draw (((i + 1) < 10 ? "0" : "") + (i + 1) + " . " + candi[i].current_name) font: info at: {20 #px, y #px} anchor: #top_left color: candi[i].my_risk_color.brighter;
-//					}
-//
-//				}
-//
-//			}
-//
-//			species AdministrativeBound_1 aspect: mixed; // transparency: 0.5 ;
-//			event mouse_move action: when_mouse_move;
-//			graphics "Info" transparency: 0.2 {
-//				if (under_mouse_agent != nil) {
-//					draw info_text at: {info_target.x - (length(info_text) * 20), info_target.y} empty: false font: info border: true color: #yellow;
-//				}
-//
-//			}
+		//			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
+		//			overlay position: {100, 0} size: {270 #px, 400 #px} transparency: 0.2 {
+		//				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (AdministrativeBound_1 sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
+		//				text_color;
+		//				draw ("" + current_date) font: info at: {20 #px, 80 #px} anchor: #top_left color: text_color;
+		//				draw ("Xếp hạng nguy cơ:") font: default at: {20 #px, 110 #px} anchor: #top_left color: text_color;
+		//				if (show_ranking) {
+		//					int y <- 130;
+		//					list<AdministrativeBound_1> candi <- AdministrativeBound_1 sort_by (-each.risk_point);
+		//					loop i from: 0 to: nb_ranking_list - 1 {
+		//						y <- y + 25;
+		//						draw (((i + 1) < 10 ? "0" : "") + (i + 1) + " . " + candi[i].current_name) font: info at: {20 #px, y #px} anchor: #top_left color: candi[i].my_risk_color.brighter;
+		//					}
+		//
+		//				}
+		//
+		//			}
+		//
+		//			species AdministrativeBound_1 aspect: mixed; // transparency: 0.5 ;
+		//			event mouse_move action: when_mouse_move;
+		//			graphics "Info" transparency: 0.2 {
+		//				if (under_mouse_agent != nil) {
+		//					draw info_text at: {info_target.x - (length(info_text) * 20), info_target.y} empty: false font: info border: true color: #yellow;
+		//				}
+		//
+		//			}
 
 		}
 
 		display "default_display" synchronized: false background: background virtual: true draw_env: false {
-//			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
-//			overlay position: {100, 0} size: {700 #px, 200 #px} transparency: 0 {
-//				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (AdministrativeBound_1 sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
-//				text_color;
-//				draw ("" + current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
-//			}
-//
-//			species AdministrativeBound_1 aspect: default;
-//			event mouse_move action: when_mouse_move;
-//			graphics "Info" {
-//				if (under_mouse_agent != nil) {
-//					string str <- under_mouse_agent.current_name;
-//					str <- str + ": " + length(under_mouse_agent.detected_cases_F0);
-//					draw str at: {info_target.x - (length(str) * 20), info_target.y} empty: false font: info border: true color: #yellow;
-//				}
-//
-//			}
+		//			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
+		//			overlay position: {100, 0} size: {700 #px, 200 #px} transparency: 0 {
+		//				draw ("" + map_GIS_name[GIS_id] + " | Ca nhiễm:" + (AdministrativeBound_1 sum_of length(each.detected_cases_F0))) font: default at: {20 #px, 50 #px} anchor: #top_left color:
+		//				text_color;
+		//				draw ("" + current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
+		//			}
+		//
+		//			species AdministrativeBound_1 aspect: default;
+		//			event mouse_move action: when_mouse_move;
+		//			graphics "Info" {
+		//				if (under_mouse_agent != nil) {
+		//					string str <- under_mouse_agent.current_name;
+		//					str <- str + ": " + length(under_mouse_agent.detected_cases_F0);
+		//					draw str at: {info_target.x - (length(str) * 20), info_target.y} empty: false font: info border: true color: #yellow;
+		//				}
+		//
+		//			}
 
 		}
 
 		display "default_display_risk" synchronized: false background: background virtual: true draw_env: false {
-//			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
-//			species AdministrativeBound_1 aspect: risky position: {0, 0, 0.002}; //transparency: 0.5;
-//			event mouse_move action: when_mouse_move;
-//			overlay position: {100, 0} size: {700 #px, 200 #px} transparency: 0 {
-//				draw ("" + map_GIS_name[GIS_id] + " | Nguy cơ") font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
-//				draw ("" + current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
-//				if (show_ranking) {
-//					int y <- 100;
-//					list<AdministrativeBound_1> candi <- AdministrativeBound_1 sort_by (-each.risk_point);
-//					loop i from: 0 to: nb_ranking_list - 1 {
-//						y <- y + 20;
-//						draw ("" + candi[i].current_name + " " + int(candi[i].risk_point)) font: info at: {20 #px, y #px} anchor: #top_left color: text_color;
-//					}
-//
-//				}
-//
-//			}
-//
-//			graphics "Info" position: {0, 0, 0.002} {
-//				if (under_mouse_agent != nil) {
-//					string str <- under_mouse_agent.current_name;
-//					str <- str + ": " + int(under_mouse_agent.risk_point);
-//					draw str at: {info_target.x - (length(str) * 20), info_target.y} empty: false font: info border: false color: #yellow;
-//				}
-//
-//			}
+		//			image file: "../images/satellite_" + GIS_id + ".png" refresh: false;
+		//			species AdministrativeBound_1 aspect: risky position: {0, 0, 0.002}; //transparency: 0.5;
+		//			event mouse_move action: when_mouse_move;
+		//			overlay position: {100, 0} size: {700 #px, 200 #px} transparency: 0 {
+		//				draw ("" + map_GIS_name[GIS_id] + " | Nguy cơ") font: default at: {20 #px, 50 #px} anchor: #top_left color: text_color;
+		//				draw ("" + current_date) font: default at: {20 #px, 80 #px} anchor: #top_left color: text_color;
+		//				if (show_ranking) {
+		//					int y <- 100;
+		//					list<AdministrativeBound_1> candi <- AdministrativeBound_1 sort_by (-each.risk_point);
+		//					loop i from: 0 to: nb_ranking_list - 1 {
+		//						y <- y + 20;
+		//						draw ("" + candi[i].current_name + " " + int(candi[i].risk_point)) font: info at: {20 #px, y #px} anchor: #top_left color: text_color;
+		//					}
+		//
+		//				}
+		//
+		//			}
+		//
+		//			graphics "Info" position: {0, 0, 0.002} {
+		//				if (under_mouse_agent != nil) {
+		//					string str <- under_mouse_agent.current_name;
+		//					str <- str + ": " + int(under_mouse_agent.risk_point);
+		//					draw str at: {info_target.x - (length(str) * 20), info_target.y} empty: false font: info border: false color: #yellow;
+		//				}
+		//
+		//			}
 
 		}
 
