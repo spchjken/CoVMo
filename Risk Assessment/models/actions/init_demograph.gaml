@@ -32,6 +32,7 @@ global {
 		loop i from: 0 to: data.rows - 1 {
 		//				write "" + data[0, i] + " " + data[1, i];
 			ask map_adm_1["" + data[1, i]] {
+//				write int(self);
 				extern <- int(data[2, i]);
 				foreigner <- int(data[3, i]);
 				moving <- int(data[4, i]);
