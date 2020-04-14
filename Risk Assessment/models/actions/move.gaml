@@ -31,7 +31,7 @@ global {
 
 		if (under_mouse_agent != nil) { 						
 			info_text <-(under_mouse_agent.parent_varname != "Viet Nam" ? (under_mouse_agent.parent_varname + ", ") : "") + under_mouse_agent.current_varname;
-			info_text <- info_text + ": " + length(under_mouse_agent.detected_cases_F0);
+			info_text <- info_text + ": " + (length(under_mouse_agent.detected_cases_F0)+length(DetectedCase where (each.origin1=under_mouse_agent)));
 		}
 
 	}
