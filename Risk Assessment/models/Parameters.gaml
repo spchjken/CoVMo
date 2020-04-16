@@ -23,14 +23,15 @@ global {
 	float _size<-world.shape.perimeter/10000;
 //	shape_file provinces_shp_file <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_1.shp");
 //	shape_file provinces_shp_file <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_2.shp");
-	shape_file provinces_shp_file <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_3.shp");
+	shape_file provinces_shp_file;// <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_3.shp");
 	shape_file provinces_shp_file1 <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_1.shp");
 	shape_file provinces_shp_file2 <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_2.shp");
 	shape_file provinces_shp_file3 <- shape_file("../includes/gadm36_VNM_shp/gadm36_VNM_3.shp");
 //	shape_file provinces_shp_file3 <- shape_file("../includes/gadm36_VNM_shp/generated/VNM.27.16_1.shp");
 
 	list<int> statistic_cases_added<-[];
-	geometry shape <- envelope(provinces_shp_file);
+	geometry shape <- envelope(image_file("../images/satellite_" + GIS_id + ".png"));
+//	geometry shape <- envelope(provinces_shp_file1);
 	
 	
 	bool show_traffic<-true;
