@@ -17,78 +17,109 @@ global {
 
 experiment AbstractExp virtual: true {
 	float minimum_cycle_duration <- 0.025;
-	parameter "Xã hội" category: "Trọng số Tổng quan" var: weight_risk_social <- 0.35 on_change: {
+	parameter "Nhóm F0" category: "Trọng số Tổng quan" var: weight_risk_F0 <- 5.0 min: 0.0 max: 50.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Tiếp xúc" category: "Trọng số Tổng quan" var: weight_risk_contact <- 0.3 on_change: {
+	parameter "Nhóm cá nhân" category: "Trọng số Tổng quan" var: weight_risk_personality <- 2.0 min: 0.0 max: 50.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Chính sách" category: "Trọng số Tổng quan" var: weight_risk_policy <- 0.35 on_change: {
+	parameter "Nhóm môi trường xã hội" category: "Trọng số Tổng quan" var: weight_risk_society <- 3.0 min: 0.0 max: 50.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Ca nhiễm F0, F1" category: "Trọng số của yếu tố Xã hội" var: p_F0F1 <- 0.35 on_change: {
+	parameter "Nhóm xâm nhập, di chuyển" category: "Trọng số Tổng quan" var: weight_risk_intruder <- 4.0 min: 0.0 max: 50.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Thành phần ngoài lề" category: "Trọng số của yếu tố Xã hội" var: p_extern <- 0.2 on_change: {
+	parameter "Nhóm chính sách" category: "Trọng số Tổng quan" var: weight_risk_policy <- 3.0 min: 0.0 max: 50.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Người nước ngoài" category: "Trọng số của yếu tố Xã hội" var: p_foreigner <- 0.3 on_change: {
-		ask world {
-			do trigger_color;
-		}
 
-	};
-	parameter "Người di chuyển nhiều" category: "Trọng số của yếu tố Xã hội" var: p_moving <- 0.2 on_change: {
-		ask world {
-			do trigger_color;
-		}
-
-	};
-	parameter "Tiếp xúc cao" category: "Trọng số của Yếu tố Tiếp xúc" var: p_high_contact <- 0.6 on_change: {
-		ask world {
-			do trigger_color;
-		}
-
-	};
-	parameter "Tiếp xúc thấp" category: "Trọng số của Yếu tố Tiếp xúc" var: p_low_contact <- 0.4 on_change: {
-		ask world {
-			do trigger_color;
-		}
-
-	};
-	parameter "Giãn cách xã hội" category: "Trọng số của yếu tố Chính sách" var: p_social_distancing <- 0.45 on_change: {
-		ask world {
-			do trigger_color;
-		}
-
-	};
-	parameter "Hạn chế dòng vào từ địa phương khác" category: "Trọng số của yếu tố Chính sách" var: p_traffic_in <- 0.35 on_change: {
-		ask world {
-			do trigger_color;
-		}
-
-	};
-	parameter "Mức độ quyết liệt trong truy tầm nguồn" category: "Trọng số của yếu tố Chính sách" var: p_emphasize <- 0.2 on_change: {
-		ask world {
-			do trigger_color;
-		}
-
-	};
+	//	parameter "Xã hội" category: "Trọng số Tổng quan" var: weight_risk_social <- 0.35 on_change: {
+	//		ask world {
+	//			do trigger_color;
+	//		}
+	//
+	//	};
+	//	parameter "Tiếp xúc" category: "Trọng số Tổng quan" var: weight_risk_contact <- 0.3 on_change: {
+	//		ask world {
+	//			do trigger_color;
+	//		}
+	//
+	//	};
+	//	parameter "Chính sách" category: "Trọng số Tổng quan" var: weight_risk_policy <- 0.35 on_change: {
+	//		ask world {
+	//			do trigger_color;
+	//		}
+	//
+	//	};
+	//	parameter "Ca nhiễm F0, F1" category: "Trọng số của yếu tố Xã hội" var: p_F0F1 <- 0.35 on_change: {
+	//		ask world {
+	//			do trigger_color;
+	//		}
+	//
+	//	};
+	//	parameter "Thành phần ngoài lề" category: "Trọng số của yếu tố Xã hội" var: p_extern <- 0.2 on_change: {
+	//		ask world {
+	//			do trigger_color;
+	//		}
+	//
+	//	};
+	//	parameter "Người nước ngoài" category: "Trọng số của yếu tố Xã hội" var: p_foreigner <- 0.3 on_change: {
+	//		ask world {
+	//			do trigger_color;
+	//		}
+	//
+	//	};
+	//	parameter "Người di chuyển nhiều" category: "Trọng số của yếu tố Xã hội" var: p_moving <- 0.2 on_change: {
+	//		ask world {
+	//			do trigger_color;
+	//		}
+	//
+	//	};
+	//	parameter "Tiếp xúc cao" category: "Trọng số của Yếu tố Tiếp xúc" var: p_high_contact <- 0.6 on_change: {
+	//		ask world {
+	//			do trigger_color;
+	//		}
+	//
+	//	};
+	//	parameter "Tiếp xúc thấp" category: "Trọng số của Yếu tố Tiếp xúc" var: p_low_contact <- 0.4 on_change: {
+	//		ask world {
+	//			do trigger_color;
+	//		}
+	//
+	//	};
+	//	parameter "Giãn cách xã hội" category: "Trọng số của yếu tố Chính sách" var: p_social_distancing <- 0.45 on_change: {
+	//		ask world {
+	//			do trigger_color;
+	//		}
+	//
+	//	};
+	//	parameter "Hạn chế dòng vào từ địa phương khác" category: "Trọng số của yếu tố Chính sách" var: p_traffic_in <- 0.35 on_change: {
+	//		ask world {
+	//			do trigger_color;
+	//		}
+	//
+	//	};
+	//	parameter "Mức độ quyết liệt trong truy tầm nguồn" category: "Trọng số của yếu tố Chính sách" var: p_emphasize <- 0.2 on_change: {
+	//		ask world {
+	//			do trigger_color;
+	//		}
+	//
+	//	};
 	parameter "Thư mục lưu kết quả" category: "Hiển thị" var: a_file;
 	user_command "Xuất kết quả" category: "Hiển thị" color: #darkblue {
 		ask world {

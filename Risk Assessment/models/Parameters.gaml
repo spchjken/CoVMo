@@ -15,7 +15,7 @@ global {
 	float step <- 15 #minute;
 	float c_zoom<-1.0;
 	//thoi gian khoi dau mo hinh
-	date starting_date <- date([2020, 4, 14, 0, 0]);
+	date starting_date <- date([2020, 4, 17, 0, 0]);
 
 	// thoi gian virus ton tai va gay nguy hiem o khu vuc benh nhan di qua (tinh theo gio)
 	int v_time_life <- 24;
@@ -40,6 +40,14 @@ global {
 	file a_file <- folder("../../results/");
 	bool a_boolean_to_disable_parameters <- true;
 	
+	float weight_risk_F0<-5.0;
+	float weight_risk_personality<-2.0;
+	float weight_risk_society<-3.0;
+	float weight_risk_intruder<-4.0;
+	float weight_risk_policy<-3.0;
+	
+	
+	
 	float weight_risky_activity<-0.5;
 	float weight_risky_zone<-0.5;
 	float weight_risky_transport<-0.5;
@@ -47,7 +55,7 @@ global {
 	
 	float weight_risk_social<-0.35;
 	float weight_risk_contact<-0.3;
-	float weight_risk_policy<-0.35;
+//	float weight_risk_policy<-0.35;
 	
 	float p_F0F1<-0.35;
 	float p_extern<-0.2;
@@ -92,7 +100,7 @@ global {
 	map<int,int> map_nb_increase<-[5::nb_increase_size_1,8::nb_increase_size_1,11::nb_increase_size_1];
 	
 	
-	float max_risk_point <-200.0;
+	float max_risk_point <-2000.0;
 //	float radius_circle_1<- (20 #km);
 //	float radius_circle_2 -> (1#km) ;
 //	float radius_circle_3 -> (0.01#m);

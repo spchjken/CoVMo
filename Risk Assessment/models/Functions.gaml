@@ -8,6 +8,7 @@
 
 model Functions
 import "actions/initialisation.gaml"
+import "actions/retrieve_risk_point.gaml"
 import "actions/init_demograph.gaml"
 import "actions/init_transportation.gaml"
 import "actions/init_infected_cases.gaml"

@@ -44,7 +44,34 @@ species AdministrativeBound parent: EpidemiologicHost {
 	float size_of_circle_2 -> {(1 #km + ((length(detected_cases_F0) / nb_increase_size_1) < 30 ? (length(detected_cases_F0) / nb_increase_size_1) #km : 30 #km)) * ((world.shape.perimeter) / 8000000)};
 	float size_of_circle_3 -> {(1 #km + ((length(detected_cases_F0) / nb_increase_size_1) < 30 ? (length(detected_cases_F0) / nb_increase_size_1) #km : 30 #km)) * ((world.shape.perimeter) / 20000000)};
 	//	map<int,float> c_size<-[5::size_of_circle_1,8::size_of_circle_2,11::size_of_circle_3];
-	float accessment {
+	list<float> lst_risk_point<-[0.0,0.0,0.0,0.0,0.0];
+	float accessment{
+		return weight_risk_F0*get_risk_F0()+ weight_risk_personality*get_risk_personality()+ weight_risk_society*get_risk_society() +weight_risk_intruder*get_risk_intruder()+ weight_risk_policy*get_risk_policy();
+	}
+	
+	float get_risk_F0{
+		return lst_risk_point[0];
+	}
+	
+	float get_risk_personality{
+		return lst_risk_point[1];
+	}
+	
+	float get_risk_society{
+		return lst_risk_point[2];
+	}
+	
+	float get_risk_intruder{
+		return lst_risk_point[3];
+	}
+	
+	float get_risk_policy{
+		return lst_risk_point[4];
+	}
+	
+	
+	
+	float accessment_16_Apr {
 		return weight_risk_social * get_risk_social() + weight_risk_contact * get_risk_contact() + weight_risk_policy * get_risk_policy();
 	}
 
