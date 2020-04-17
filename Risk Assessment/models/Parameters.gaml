@@ -100,7 +100,7 @@ global {
 	map<int,int> map_nb_increase<-[5::nb_increase_size_1,8::nb_increase_size_1,11::nb_increase_size_1];
 	
 	
-	float max_risk_point <-2000.0;
+	float max_risk_point <-200.0;
 //	float radius_circle_1<- (20 #km);
 //	float radius_circle_2 -> (1#km) ;
 //	float radius_circle_3 -> (0.01#m);

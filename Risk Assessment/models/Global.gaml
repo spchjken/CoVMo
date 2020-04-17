@@ -24,9 +24,10 @@ global {
 
 	}
 
-	action trigger_color {
+	action trigger_color { 
 		ask AdministrativeBound_1 + AdministrativeBound_2 + AdministrativeBound_3 {
 			risk_point <- self.accessment();
+			if(max_risk_point<risk_point){max_risk_point<-risk_point;}
 			my_risk_color <- hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1);
 		}
 
