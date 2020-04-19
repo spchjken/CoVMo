@@ -48,6 +48,57 @@ global {
 	float weight_risk_pathology<-3.0;
 	
 	
+	 
+float weight_Chi_so_muc_do_nghiem_trong;
+float weight_Chi_so_nguy_co_xam_nhap;
+float weight_Luu_tru;
+float weight_Bien_gioi;
+float weight_Su_kien_dong_nguoi; 
+float weight_Di_cu_lien_tinh; 
+float weight_Chi_so_nguy_co_ca_nhan;
+float weight_Tinh_chat_viec_lam;
+float weight_Di_chuyen_nhieu;
+float weight_Tiep_xuc_nhieu;
+float weight_Chi_so_nguy_co_moi_truong_xa_hoi;
+float weight_Mat_do_dan_so;
+float weight_Thanh_thi;
+float weight_TP_truc_thuoc_TW;
+float weight_Do_thi_khac;
+float weight_Nong_thon;
+float weight_Hoat_dong_kinh_te;
+float weight_Ky_tuc_xa;
+
+
+float weight_Chi_so_nguy_co_suc_khoe_va_benh_ly_nen;
+float weight_Benh_nen_man_tinh;
+float weight_Dan_so_gia;
+float weight_Chi_so_nang_luc_ung_pho_Covid;
+float weight_So_nhan_vien_y_te_va_bac_sy_dan_so;
+float weight_So_giuong_benh;
+float weight_So_may_tho;
+float weight_So_co_so_y_te;
+float weight_So_ICU;
+float weight_Benh_vien_TW;
+float weight_Kham_tu_xa;
+float weight_So_may_PCR;
+float weight_Ty_le_BN_nguoi_dan_nghi_ngo_duoc_xet_nghiem_PCR;
+float weight_Chi_so_giam_sat_phat_hien_truy_vet;
+float weight_Chi_so_nguy_co_tu_duong_bien_gioi;
+float weight_Lien_quan_den_Trung_Quoc;
+float weight_lien_quan_den_Lao;
+float weight_lien_quan_den_Campuchia;
+float weight_Chi_so_dap_ung_chinh_quyen;
+float weight_Tot;
+float weight_Trung_binh;
+float weight_Yeu;
+float weight_Chi_so_dong_mo_truong_hop;
+float weight_dong;
+float weight_mo;
+float weight_Chi_so_ho_tro;
+float weight_Ho_tro_nguoi_gia;
+float weight_Ho_tro_nguoi_co_trieu_chung;
+	
+	
 	
 	float weight_risky_activity<-0.5;
 	float weight_risky_zone<-0.5;
