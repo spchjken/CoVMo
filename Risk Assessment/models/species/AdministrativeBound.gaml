@@ -46,7 +46,7 @@ species AdministrativeBound parent: EpidemiologicHost {
 	//	map<int,float> c_size<-[5::size_of_circle_1,8::size_of_circle_2,11::size_of_circle_3];
 	list<float> lst_risk_point<-[0.0,0.0,0.0,0.0,0.0];
 	float accessment{
-		return weight_risk_F0*get_risk_F0()+ weight_risk_personality*get_risk_personality()+ weight_risk_society*get_risk_society() +weight_risk_intruder*get_risk_intruder()+ weight_risk_policy*get_risk_policy();
+		return weight_Chi_so_muc_do_nghiem_trong*get_risk_F0()+ weight_risk_personality*get_risk_personality()+ weight_risk_society*get_risk_society() +weight_Chi_so_nguy_co_xam_nhap*get_risk_intruder()+ weight_risk_policy*get_risk_policy();
 	}
 	
 	float get_risk_F0{
