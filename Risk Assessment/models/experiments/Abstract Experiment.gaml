@@ -17,31 +17,38 @@ global {
 
 experiment AbstractExp virtual: true {
 	float minimum_cycle_duration <- 0.025;
-	parameter "Nhóm F0" category: "Trọng số Tổng quan" var: weight_risk_F0 <- 5.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Mức độ nghiêm trọng" category: "Chỉ số lây nhiễm" var: weight_risk_F0 <- 5.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Nhóm cá nhân" category: "Trọng số Tổng quan" var: weight_risk_personality <- 2.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Nguy cơ cá nhân" category: "Chỉ số lây nhiễm" var: weight_risk_personality <- 1.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Nhóm môi trường xã hội" category: "Trọng số Tổng quan" var: weight_risk_society <- 3.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Nguy cơ môi trường xã hội" category: "Chỉ số lây nhiễm" var: weight_risk_society <- 5.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Nhóm xâm nhập, di chuyển" category: "Trọng số Tổng quan" var: weight_risk_intruder <- 4.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Xâm nhập" category: "Chỉ số lây nhiễm" var: weight_risk_intruder <- 4.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Nhóm chính sách" category: "Trọng số Tổng quan" var: weight_risk_policy <- 3.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Sức khỏe và bệnh lý" category: "Chỉ số nguy cơ đáp ứng" var: weight_risk_pathology <- 3.0 min: 0.0 max: 10.0 on_change: {
+		ask world {
+			do trigger_color;
+		}
+
+	};
+
+	parameter "Năng lực ứng phó" category: "Chỉ số nguy cơ đáp ứng" var: weight_risk_policy <- 3.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}

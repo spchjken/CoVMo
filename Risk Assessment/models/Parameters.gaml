@@ -44,7 +44,8 @@ global {
 	float weight_risk_personality<-2.0;
 	float weight_risk_society<-3.0;
 	float weight_risk_intruder<-4.0;
-	float weight_risk_policy<-3.0;
+	float weight_risk_policy<-3.0;	
+	float weight_risk_pathology<-3.0;
 	
 	
 	
