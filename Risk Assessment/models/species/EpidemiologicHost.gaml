@@ -15,7 +15,7 @@ species EpidemiologicHost {
 	float h;
 	float beta <- 0.4;
 	float gamma <- 0.01;
-	float sigma <- 0.05;
+	float sigma <- 1/14;
 	float mu <- 0.01;
 	rgb mycolor -> {hsb(0, (I > 25 ? 0.1 : 0) + (I > 25 ? 25 : I) / 29, 1)};
 	//	rgb mycolor -> {hsb(0, I/N, 1)};
@@ -27,17 +27,30 @@ species EpidemiologicHost {
 	}
 
 	equation eqSEIR {
-		diff(S, t) = (mu * N - beta * S * I / N - mu * S) / step;
+		diff(S, t) = (-beta * S * I / N) / step;
 		diff(E, t) = (beta * S * I / N - mu * E - sigma * E) / step;
-		diff(I, t) = (sigma * E - mu * I - gamma * I) / step;
-		diff(R, t) = (gamma * I - mu * R) / step;
+		diff(I, t) = (sigma * E - gamma * I) / step;
+		diff(R, t) = (gamma * I) / step;
 	}
 
 	bool infected <- false;
 
-	reflex solving when: infected {
-		solve eqSEIR method: "rk4" step_size: h;
+	action solving  {
+		float interval<-1#day;
+		t<-0.0;
+//		N<-100;		
+//		I<-1.0;
+//		S<-N-I;
+//		E<-0.0;
+//		R<-0.0;
+		loop times:21{
+			t<-t+interval;				
+			solve eqSEIR method: "rk4" step_size: h;
+		}
+//		write self;
+//		write S;
+//		write E;
+//		write I;
 	}
-
 
 }

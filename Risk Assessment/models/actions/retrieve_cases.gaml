@@ -28,7 +28,7 @@ global {
 				list<AdministrativeBound_1> adm1;
 				list<AdministrativeBound_2> adm2;
 				list<AdministrativeBound_3> adm3;
-//				write ""+statistic_cases[2, row_idx]+" "+statistic_cases[4, row_idx]+" "+statistic_cases[5, row_idx];
+				//				write ""+statistic_cases[2, row_idx]+" "+statistic_cases[4, row_idx]+" "+statistic_cases[5, row_idx];
 				if (statistic_cases[2, row_idx] = "" or statistic_cases[2, row_idx] = "cach ly") {
 					adm1 <- (first(map_adm_1.values));
 				} else {
@@ -50,8 +50,8 @@ global {
 				ask adm1 {
 				//					write VARNAME_2;
 				//					infected <- true;
-					I <- I + 1;
-					S <- S - 1;
+				//					I <- I + 1;
+				//					S <- S - 1;
 					create DetectedCase returns: D {
 						if (statistic_cases[2, row_idx] = "cach ly") {
 							confined <- true;
@@ -72,8 +72,14 @@ global {
 						detected_date <- date(statistic_cases[3, row_idx]);
 					}
 
-//					write ""+int(first(D));
+					//					write ""+int(first(D));
 					D <- D where (!each.confined);
+					I <- 1.0;
+					S <- float(20 + rnd(80));
+					N <- int(S + I);
+					do solving;
+					F1 <- int(F1 + I);
+					write self.VARNAME_1;
 					circle_bound <- circle(size_of_circle_1) at_location location;
 					ask D {
 						do change_zoom;
@@ -105,6 +111,7 @@ global {
 							ask first(adm3).neighbors {
 								high_contact <- high_contact + 0.5;
 							}
+
 							ask adm3 {
 								risk_point <- self.accessment();
 								my_risk_color <- hsb(0, (risk_point > 0 ? 0.05 : 0) + ((risk_point / max_risk_point) < 0.75 ? (risk_point / max_risk_point) : 0.75), 1);
@@ -113,6 +120,7 @@ global {
 						}
 
 					}
+
 				}
 
 				statistic_cases_added << row_idx;

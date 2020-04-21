@@ -6,7 +6,7 @@
 ***/
 model Corona
 
-import "../Global.gaml"
+import "../models/Global.gaml"
 
 global {
 	font default <- font("Helvetica", 20, #bold);
@@ -17,30 +17,30 @@ global {
 
 experiment AbstractExp virtual: true {
 	float minimum_cycle_duration <- 0.025;
-	parameter "Nguy cơ cá nhân" category: "Chỉ số nguy cơ lây nhiễm" var: weight_risk_personality <- 1.0 min: 0.0 max: 10.0 on_change: {
-		ask world {
-			do trigger_color;
-		}
-
-	};
-	parameter "Nguy cơ môi trường xã hội" category: "Chỉ số nguy cơ lây nhiễm" var: weight_risk_society <- 5.0 min: 0.0 max: 10.0 on_change: {
-		ask world {
-			do trigger_color;
-		}
-
-	};
-	parameter "Sức khỏe và bệnh lý" category: "Chỉ số nguy cơ đáp ứng" var: weight_risk_pathology <- 3.0 min: 0.0 max: 10.0 on_change: {
-		ask world {
-			do trigger_color;
-		}
-
-	};
-	parameter "Năng lực ứng phó" category: "Chỉ số nguy cơ đáp ứng" var: weight_risk_policy <- 3.0 min: 0.0 max: 10.0 on_change: {
-		ask world {
-			do trigger_color;
-		}
-
-	};
+//	parameter "Nguy cơ cá nhân" category: "Chỉ số nguy cơ lây nhiễm" var: weight_risk_personality <- 1.0 min: 0.0 max: 10.0 on_change: {
+//		ask world {
+//			do trigger_color;
+//		}
+//
+//	};
+//	parameter "Nguy cơ môi trường xã hội" category: "Chỉ số nguy cơ lây nhiễm" var: weight_risk_society <- 5.0 min: 0.0 max: 10.0 on_change: {
+//		ask world {
+//			do trigger_color;
+//		}
+//
+//	};
+//	parameter "Sức khỏe và bệnh lý" category: "Chỉ số nguy cơ đáp ứng" var: weight_risk_pathology <- 3.0 min: 0.0 max: 10.0 on_change: {
+//		ask world {
+//			do trigger_color;
+//		}
+//
+//	};
+//	parameter "Năng lực ứng phó" category: "Chỉ số nguy cơ đáp ứng" var: weight_risk_policy <- 3.0 min: 0.0 max: 10.0 on_change: {
+//		ask world {
+//			do trigger_color;
+//		}
+//
+//	};
 
 	//////ssss//////
 	///////////////
@@ -56,25 +56,25 @@ experiment AbstractExp virtual: true {
 		}
 
 	};
-	parameter "Lưu trú (Việt Nam & Nước Ngoài)" category: "Chỉ số nguy cơ xâm nhập" var: weight_Luu_tru <- 10.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Lưu trú (Việt Nam & Nước Ngoài)" category: "Khối chỉ số nguy cơ lây nhiễm - CS nguy cơ xâm nhập" var: weight_Luu_tru <- 10.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Biên giới Tây Nam/B/Cửa Khẩu" category: "Chỉ số nguy cơ xâm nhập" var: weight_Bien_gioi <- 20.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Biên giới Tây Nam/B/Cửa Khẩu" category: "Khối chỉ số nguy cơ lây nhiễm - CS nguy cơ xâm nhập" var: weight_Bien_gioi <- 20.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Sự kiện đông người" category: "Chỉ số nguy cơ xâm nhập" var: weight_Su_kien_dong_nguoi <- 20.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Sự kiện đông người" category: "Khối chỉ số nguy cơ lây nhiễm - CS nguy cơ xâm nhập" var: weight_Su_kien_dong_nguoi <- 20.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Di cư liên tỉnh" category: "Chỉ số nguy cơ xâm nhập" var: weight_Di_cu_lien_tinh <- 50.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Di cư liên tỉnh" category: "Khối chỉ số nguy cơ lây nhiễm - CS nguy cơ xâm nhập" var: weight_Di_cu_lien_tinh <- 50.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
@@ -86,13 +86,13 @@ experiment AbstractExp virtual: true {
 		}
 
 	};
-	parameter "Di chuyển nhiều" category: "Tính chất việc làm" var: weight_Di_chuyen_nhieu <- 30.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Tính chất việc làm Di chuyển nhiều" category: "Khối chỉ số nguy cơ lây nhiễm - CS nguy cơ cá nhân" var: weight_Di_chuyen_nhieu <- 30.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Tiếp xúc nhiều" category: "Tính chất việc làm" var: weight_Tiep_xuc_nhieu <- 70.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Tính chất việc làm Tiếp xúc nhiều" category: "Khối chỉ số nguy cơ lây nhiễm - CS nguy cơ cá nhân" var: weight_Tiep_xuc_nhieu <- 70.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
@@ -104,37 +104,37 @@ experiment AbstractExp virtual: true {
 		}
 
 	};
-	parameter "Mật độ dân số" category: "Chỉ số nguy cơ môi trường-xã hội" var: weight_Mat_do_dan_so <- 20.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Mật độ dân số" category: "Khối chỉ số nguy cơ lây nhiễm - CS nguy cơ môi trường-xã hội" var: weight_Mat_do_dan_so <- 20.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "TP trực thuộc TW" category: "Thành thị" var: weight_TP_truc_thuoc_TW <- 50.0 min: 0.0 max: 100.0 on_change: {
+	parameter "TP trực thuộc TW" category: "Khối chỉ số nguy cơ lây nhiễm - CS nguy cơ môi trường-xã hội" var: weight_TP_truc_thuoc_TW <- 50.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Đô thị khác" category: "Thành thị" var: weight_Do_thi_khac <- 20.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Đô thị khác" category: "Khối chỉ số nguy cơ lây nhiễm - CS nguy cơ môi trường-xã hội" var: weight_Do_thi_khac <- 20.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Nông thôn" category: "Chỉ số nguy cơ môi trường-xã hội" var: weight_Nong_thon <- 10.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Nông thôn" category: "Khối chỉ số nguy cơ lây nhiễm - CS nguy cơ môi trường-xã hội" var: weight_Nong_thon <- 10.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Hoạt động kinh tế/ khu công nghiệp" category: "Chỉ số nguy cơ môi trường-xã hội" var: weight_Hoat_dong_kinh_te <- 20.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Hoạt động kinh tế/ khu công nghiệp" category: "Khối chỉ số nguy cơ lây nhiễm - CS nguy cơ môi trường-xã hội" var: weight_Hoat_dong_kinh_te <- 20.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Ký túc xá" category: "Chỉ số nguy cơ môi trường-xã hội" var: weight_Ky_tuc_xa <- 10.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Ký túc xá" category: "Khối chỉ số nguy cơ lây nhiễm - CS nguy cơ môi trường-xã hội" var: weight_Ky_tuc_xa <- 10.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
@@ -147,13 +147,13 @@ experiment AbstractExp virtual: true {
 		}
 
 	};
-	parameter "Bệnh nền mãn tính" category: "Chỉ số nguy cơ sức khoẻ và bệnh lý nền" var: weight_Benh_nen_man_tinh <- 70.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Bệnh nền mãn tính" category: "Khối chỉ số nguy cơ đáp ứng - CS nguy cơ sức khoẻ và bệnh lý nền" var: weight_Benh_nen_man_tinh <- 70.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Dân số 60+" category: "Chỉ số nguy cơ sức khoẻ và bệnh lý nền" var: weight_Dan_so_gia <- 30.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Dân số 60+" category: "Khối chỉ số nguy cơ đáp ứng - CS nguy cơ sức khoẻ và bệnh lý nền" var: weight_Dan_so_gia <- 30.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
@@ -165,55 +165,55 @@ experiment AbstractExp virtual: true {
 		}
 
 	};
-	parameter "Số nhân viên ý tế và bác sỹ/ dân số" category: "Chỉ số năng lực ứng phó Covid" var: weight_So_nhan_vien_y_te_va_bac_sy_dan_so <- 10.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Số nhân viên ý tế và bác sỹ/ dân số" category: "Khối chỉ số nguy cơ đáp ứng - CS năng lực ứng phó Covid" var: weight_So_nhan_vien_y_te_va_bac_sy_dan_so <- 10.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Số giường bệnh/ dân số" category: "Chỉ số năng lực ứng phó Covid" var: weight_So_giuong_benh <- 10.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Số giường bệnh/ dân số" category: "Khối chỉ số nguy cơ đáp ứng - CS năng lực ứng phó Covid" var: weight_So_giuong_benh <- 10.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Số máy thở" category: "Chỉ số năng lực ứng phó Covid" var: weight_So_may_tho <- 30.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Số máy thở" category: "Khối chỉ số nguy cơ đáp ứng - CS năng lực ứng phó Covid" var: weight_So_may_tho <- 30.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Số cơ sở y tế" category: "Chỉ số năng lực ứng phó Covid" var: weight_So_co_so_y_te <- 10.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Số cơ sở y tế" category: "Khối chỉ số nguy cơ đáp ứng - CS năng lực ứng phó Covid" var: weight_So_co_so_y_te <- 10.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Số ICU" category: "Chỉ số năng lực ứng phó Covid" var: weight_So_ICU <- 20.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Số ICU" category: "Khối chỉ số nguy cơ đáp ứng - CS năng lực ứng phó Covid" var: weight_So_ICU <- 20.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Bệnh viện TW" category: "Chỉ số năng lực ứng phó Covid" var: weight_Benh_vien_TW <- 30.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Bệnh viện TW" category: "Khối chỉ số nguy cơ đáp ứng - CS năng lực ứng phó Covid" var: weight_Benh_vien_TW <- 30.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Khám từ xa" category: "Chỉ số năng lực ứng phó Covid" var: weight_Kham_tu_xa <- 10.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Khám từ xa" category: "Khối chỉ số nguy cơ đáp ứng - CS năng lực ứng phó Covid" var: weight_Kham_tu_xa <- 10.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Số máy PCR: 30" category: "Chỉ số năng lực ứng phó Covid" var: weight_So_may_PCR <- 10.0 min: 0.0 max: 100.0 on_change: {
+	parameter "Số máy PCR: 30" category: "Khối chỉ số nguy cơ đáp ứng - CS năng lực ứng phó Covid" var: weight_So_may_PCR <- 10.0 min: 0.0 max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Tỷ lệ BN/người dân nghi ngờ được xét nghiệm PCR" category: "Chỉ số năng lực ứng phó Covid" var: weight_Ty_le_BN_nguoi_dan_nghi_ngo_duoc_xet_nghiem_PCR <- 30.0 min: 0.0
+	parameter "Tỷ lệ BN/người dân nghi ngờ được xét nghiệm PCR" category: "Khối chỉ số nguy cơ đáp ứng - CS năng lực ứng phó Covid" var: weight_Ty_le_BN_nguoi_dan_nghi_ngo_duoc_xet_nghiem_PCR <- 30.0 min: 0.0
 	max: 100.0 on_change: {
 		ask world {
 			do trigger_color;
@@ -232,19 +232,19 @@ experiment AbstractExp virtual: true {
 		}
 
 	};
-	parameter "Liên quan đến Trung Quốc" category: "Chỉ số nguy cơ từ đường biên giới" var: weight_Lien_quan_den_Trung_Quoc <- 5.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Liên quan đến Trung Quốc" category: "Khối chỉ số chính sách can thiệp - CS nguy cơ từ đường biên giới" var: weight_Lien_quan_den_Trung_Quoc <- 5.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Liên quan đến Lào" category: "Chỉ số nguy cơ từ đường biên giới" var: weight_lien_quan_den_Lao <- 5.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Liên quan đến Lào" category: "Khối chỉ số chính sách can thiệp - CS nguy cơ từ đường biên giới" var: weight_lien_quan_den_Lao <- 5.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Liên quan đến Campuchia" category: "Chỉ số nguy cơ từ đường biên giới" var: weight_lien_quan_den_Campuchia <- 5.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Liên quan đến Campuchia" category: "Khối chỉ số chính sách can thiệp - CS nguy cơ từ đường biên giới" var: weight_lien_quan_den_Campuchia <- 5.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
@@ -256,19 +256,19 @@ experiment AbstractExp virtual: true {
 		}
 
 	};
-	parameter "Tốt" category: "Chỉ số đáp ứng chính quyền" var: weight_Chi_so_dap_ung_chinh_quyen_Tot <- 5.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Tốt" category: "Khối chỉ số chính sách can thiệp - CS đáp ứng chính quyền" var: weight_Chi_so_dap_ung_chinh_quyen_Tot <- 5.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Trung bình" category: "Chỉ số đáp ứng chính quyền" var: weight_Chi_so_dap_ung_chinh_quyen_Trung_binh <- 5.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Trung bình" category: "Khối chỉ số chính sách can thiệp - CS đáp ứng chính quyền" var: weight_Chi_so_dap_ung_chinh_quyen_Trung_binh <- 5.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Yếu" category: "Chỉ số đáp ứng chính quyền" var: weight_Chi_so_dap_ung_chinh_quyen_Yeu <- 5.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Yếu" category: "Khối chỉ số chính sách can thiệp - CS đáp ứng chính quyền" var: weight_Chi_so_dap_ung_chinh_quyen_Yeu <- 5.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
@@ -280,13 +280,13 @@ experiment AbstractExp virtual: true {
 		}
 
 	};
-	parameter "Đóng" category: "Chỉ số đóng mở trường hợp" var: weight_Chi_so_dong_mo_truong_hop_dong <- 5.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Đóng" category: "Khối chỉ số chính sách can thiệp - CS đóng mở trường hợp" var: weight_Chi_so_dong_mo_truong_hop_dong <- 5.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Mở" category: "Chỉ số đóng mở trường hợp" var: weight_Chi_so_dong_mo_truong_hop_mo <- 5.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Mở" category: "Khối chỉ số chính sách can thiệp - CS đóng mở trường hợp" var: weight_Chi_so_dong_mo_truong_hop_mo <- 5.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
@@ -298,13 +298,13 @@ experiment AbstractExp virtual: true {
 		}
 
 	};
-	parameter "Hỗ trợ người già" category: "Chỉ số hỗ trợ" var: weight_Ho_tro_nguoi_gia <- 5.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Hỗ trợ người già" category: "Khối chỉ số chính sách can thiệp - CS hỗ trợ" var: weight_Ho_tro_nguoi_gia <- 5.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
 
 	};
-	parameter "Hỗ trợ người có triệu chứng" category: "Chỉ số hỗ trợ" var: weight_Ho_tro_nguoi_co_trieu_chung <- 5.0 min: 0.0 max: 10.0 on_change: {
+	parameter "Hỗ trợ người có triệu chứng" category: "Khối chỉ số chính sách can thiệp - CS hỗ trợ" var: weight_Ho_tro_nguoi_co_trieu_chung <- 5.0 min: 0.0 max: 10.0 on_change: {
 		ask world {
 			do trigger_color;
 		}
@@ -323,7 +323,7 @@ experiment AbstractExp virtual: true {
 	//	parameter "Disable following parameters" category: "Hiển thị" var: a_boolean_to_disable_parameters disables: [a_file];
 	parameter "Xem lưu lượng giao thông" category: "Hiển thị" var: show_traffic <- false;
 	parameter "Xem xếp hạng" category: "Hiển thị" var: show_ranking <- true;
-	parameter "Số lượng hiển thị xếp hạng" category: "Hiển thị" var: nb_ranking_list <- 5 min: 1 max: 30;
+	parameter "Số lượng hiển thị xếp hạng" category: "Hiển thị" var: nb_ranking_list <- 10 min: 1 max: 30;
 	//	parameter "Mức tăng cấp quốc gia" category: "Hiển thị" var: nb_increase_size_1 <- 10;
 	//	parameter "Mức tăng cấp thành phố" category: "Hiển thị" var: nb_increase_size_2 <- 5;
 	//	parameter "Mức tăng cấp quận" category: "Hiển thị" var: nb_increase_size_3 <- 1;

@@ -17,7 +17,7 @@ global {
 		string res <- "";
 		list<AdministrativeBound_1> out <- AdministrativeBound_1 sort_by (-each.risk_point);
 		ask (AdministrativeBound_1 sort_by (-each.risk_point)) {
-			res <- res + current_name + "," + risk_point + "\n";
+			res <- res + current_name + "," + risk_point + "," + F1 + "\n";
 		}
 
 		write res;

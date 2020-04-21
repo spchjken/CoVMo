@@ -23,7 +23,8 @@ global {
 		loop i from: 0 to: data.rows - 1 {
 			AdministrativeBound_1 p <- first(AdministrativeBound_1 where (each.VARNAME_1 = data[0, i]));
 			ask p {
-				N <- int(data[1, i]);
+				pop <- int(data[1, i]); 
+				N<- int(data[1, i]);
 				I <- float(data[2, i]);
 				if (I > 0) {
 					create DetectedCase number: I returns: D {
