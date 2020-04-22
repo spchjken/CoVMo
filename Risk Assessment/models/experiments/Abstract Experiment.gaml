@@ -311,7 +311,10 @@ experiment AbstractExp virtual: true {
 
 	};
 
-
+//
+//
+//
+//
 
 	parameter "Thư mục lưu kết quả" category: "Hiển thị" var: a_file;
 	user_command "Xuất kết quả" category: "Hiển thị" color: #darkblue {

@@ -23,24 +23,26 @@ global {
 		loop i from: 0 to: data.rows - 1 {
 			AdministrativeBound_1 p <- first(AdministrativeBound_1 where (each.VARNAME_1 = data[0, i]));
 			ask p {
-				pop <- int(data[1, i]); 
-				N<- int(data[1, i]);
+				pop <- int(data[1, i]);
+				N <- int(data[1, i]);
 				I <- float(data[2, i]);
 				if (I > 0) {
 					create DetectedCase number: I returns: D {
-						name<-""+int(self);
+						name <- "" + int(self);
 						recovered <- true;
-						origin1 <- myself;
+						confined <- true;
+						//						origin1 <- myself;
 						origin2 <- first(AdministrativeBound_2 where (each.VARNAME_1 = myself.VARNAME_1));
-						location <- any_location_in(origin1.circle_bound);
+//						location <- any_location_in(origin1.circle_bound);
 					}
 
 					circle_bound <- circle(size_of_circle_1) at_location location;
 					//					detected_cases_F0 <- detected_cases_F0 + D;
 				}
- }
 
-		} 
+			}
+
+		}
 
 	}
 

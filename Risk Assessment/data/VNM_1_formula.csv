@@ -1,5 +1,5 @@
-T?nh,Chi_so_muc_do_nghiem_trong,Chi_so_nguy_co_xam_nhap,Luu_tru,Bien_gioi,Su_kien_dong_nguoi,Di_cu_lien_tinh,Chi_so_nguy_co_ca_nhan,Di_chuyen_nhieu,Tiep_xuc_nhieu,Chi_so_nguy_co_moi_truong_xa_hoi,Mat_do_dan_so,TP_truc_thuoc_TW,Do_thi_khac,Nong_thon,Hoat_dong_kinh_te,Ky_tuc_xa,Chi_so_nguy_co_suc_khoe_va_benh_ly_nen,Benh_nen_man_tinh,Dan_so_gia,Chi_so_nang_luc_ung_pho_Covid,So_nhan_vien_y_te_va_bac_sy_dan_so,So_giuong_benh,So_may_tho,So_co_so_y_te,So_ICU,Benh_vien_TW,Kham_tu_xa,So_may_PCR,Ty_le_BN_nguoi_dan_nghi_ngo_duoc_xet_nghiem_PCR,Ch? s? ?áp ?ng,Chi_so_giam_sat_phat_hien_truy_vet,Chi_so_nguy_co_tu_duong_bien_gioi,Lien_quan_den_Trung_Quoc,lien_quan_den_Lao,lien_quan_den_Campuchia,Chi_so_dap_ung_chinh_quyen,Chi_so_dap_ung_chinh_quyen_Tot,Chi_so_dap_ung_chinh_quyen_Trung_binh,Chi_so_dap_ung_chinh_quyen_Yeu,Chi_so_dong_mo_truong_hop,Chi_so_dong_mo_truong_hop_dong,Chi_so_dong_mo_truong_hop_mo,Chi_so_ho_tro,Ho_tro_nguoi_gia,Ho_tro_nguoi_co_trieu_chung
-An Giang,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Tinh,Chi_so_muc_do_nghiem_trong,Chi_so_nguy_co_xam_nhap,Luu_tru,Bien_gioi,Su_kien_dong_nguoi,Di_cu_lien_tinh,Chi_so_nguy_co_ca_nhan,Di_chuyen_nhieu,Tiep_xuc_nhieu,Chi_so_nguy_co_moi_truong_xa_hoi,Mat_do_dan_so,TP_truc_thuoc_TW,Do_thi_khac,Nong_thon,Hoat_dong_kinh_te,Ky_tuc_xa,Chi_so_nguy_co_suc_khoe_va_benh_ly_nen,Benh_nen_man_tinh,Dan_so_gia,Chi_so_nang_luc_ung_pho_Covid,So_nhan_vien_y_te_va_bac_sy_dan_so,So_giuong_benh,So_may_tho,So_co_so_y_te,So_ICU,Benh_vien_TW,Kham_tu_xa,So_may_PCR,Ty_le_BN_nguoi_dan_nghi_ngo_duoc_xet_nghiem_PCR,Ch? s? ?ï¿½p ?ng,Chi_so_giam_sat_phat_hien_truy_vet,Chi_so_nguy_co_tu_duong_bien_gioi,Lien_quan_den_Trung_Quoc,lien_quan_den_Lao,lien_quan_den_Campuchia,Chi_so_dap_ung_chinh_quyen,Chi_so_dap_ung_chinh_quyen_Tot,Chi_so_dap_ung_chinh_quyen_Trung_binh,Chi_so_dap_ung_chinh_quyen_Yeu,Chi_so_dong_mo_truong_hop,Chi_so_dong_mo_truong_hop_dong,Chi_so_dong_mo_truong_hop_mo,Chi_so_ho_tro,Ho_tro_nguoi_gia,Ho_tro_nguoi_co_trieu_chung
+An Giang,0,1,2,3,50,5,6,7,8,9,59,11,12,13,75,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,, 
 Ba Ria - Vung Tau,0,1,2,0,30,5,6,7,8,9,47,11,12,13,5,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Bac Giang,0,1,2,3,0,5,6,7,8,9,54,11,12,13,65,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Bac Kan,0,1,2,3,0,5,6,7,8,9,33,11,12,13,5,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -18,7 +18,7 @@ Dak Lak,0,1,2,3,0,5,6,7,8,9,51,11,12,13,10,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Dak Nong,0,1,2,3,0,5,6,7,8,9,40,11,12,13,5,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Dien Bien,0,1,2,3,50,5,6,7,8,9,40,11,12,13,5,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Dong Nai,0,1,2,3,50,5,6,7,8,9,42,11,12,13,0,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-Dong Thap,0,1,2,3,50,5,6,7,8,9,59,11,12,13,75,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Dong Thap,0,1,2,0,30,5,6,7,8,9,47,11,12,13,5,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Gia Lai,0,1,2,3,0,5,6,7,8,9,37,11,12,13,0,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Ha Giang,0,1,2,3,0,5,6,7,8,9,27,11,12,13,5,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Ha Nam,0,1,2,3,0,5,6,7,8,9,40,11,12,13,5,15,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

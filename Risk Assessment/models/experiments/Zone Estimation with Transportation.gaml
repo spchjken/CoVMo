@@ -7,7 +7,7 @@
 model Corona
 
 import "Abstract Experiment.gaml"
-experiment Pandemic2020 type: gui parent: AbstractExp autorun: true {
+experiment Pandemic2020 type: gui parent: AbstractExp autorun: false {
 
 	init {
 		gama.pref_display_visible_agents <- true;	

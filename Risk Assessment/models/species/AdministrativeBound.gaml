@@ -22,7 +22,7 @@ species AdministrativeBound parent: EpidemiologicHost {
 	list<AdministrativeBound> neighbors <- [];
 	list<DetectedCase> detected_cases_F0 <- [];
 	int pop;
-	int F1 <-0;
+	int F1 <- 0;
 	int extern;
 	int foreigner;
 	int moving;
@@ -93,12 +93,56 @@ species AdministrativeBound parent: EpidemiologicHost {
 	//	map<int,float> c_size<-[5::size_of_circle_1,8::size_of_circle_2,11::size_of_circle_3];
 	list<float> lst_risk_point <- [0.0, 0.0, 0.0, 0.0, 0.0];
 	float accessment {
-		return accessment_19_04();		
+		return accessment_19_04();
 	}
-	
+
 	float accessment_19_04 {
-		return
-		weight_Chi_so_muc_do_nghiem_trong * (_Chi_so_muc_do_nghiem_trong+get_risk_F0()) + weight_Chi_so_nguy_co_xam_nhap * _Chi_so_nguy_co_xam_nhap + weight_Luu_tru * _Luu_tru + weight_Bien_gioi * _Bien_gioi + weight_Su_kien_dong_nguoi * _Su_kien_dong_nguoi + weight_Di_cu_lien_tinh * _Di_cu_lien_tinh + weight_Chi_so_nguy_co_ca_nhan * _Chi_so_nguy_co_ca_nhan + weight_Di_chuyen_nhieu * _Di_chuyen_nhieu + weight_Tiep_xuc_nhieu * _Tiep_xuc_nhieu + weight_Chi_so_nguy_co_moi_truong_xa_hoi * _Chi_so_nguy_co_moi_truong_xa_hoi + weight_Mat_do_dan_so * _Mat_do_dan_so + weight_TP_truc_thuoc_TW * _TP_truc_thuoc_TW + weight_Do_thi_khac * _Do_thi_khac + weight_Nong_thon * _Nong_thon + weight_Hoat_dong_kinh_te * _Hoat_dong_kinh_te + weight_Ky_tuc_xa * _Ky_tuc_xa + weight_Chi_so_nguy_co_suc_khoe_va_benh_ly_nen * _Chi_so_nguy_co_suc_khoe_va_benh_ly_nen + weight_Benh_nen_man_tinh * _Benh_nen_man_tinh + weight_Dan_so_gia * _Dan_so_gia + weight_Chi_so_nang_luc_ung_pho_Covid * _Chi_so_nang_luc_ung_pho_Covid + weight_So_nhan_vien_y_te_va_bac_sy_dan_so * _So_nhan_vien_y_te_va_bac_sy_dan_so + weight_So_giuong_benh * _So_giuong_benh + weight_So_may_tho * _So_may_tho + weight_So_co_so_y_te * _So_co_so_y_te + weight_So_ICU * _So_ICU + weight_Benh_vien_TW * _Benh_vien_TW + weight_Kham_tu_xa * _Kham_tu_xa + weight_So_may_PCR * _So_may_PCR + weight_Ty_le_BN_nguoi_dan_nghi_ngo_duoc_xet_nghiem_PCR * _Ty_le_BN_nguoi_dan_nghi_ngo_duoc_xet_nghiem_PCR + weight_Chi_so_giam_sat_phat_hien_truy_vet * _Chi_so_giam_sat_phat_hien_truy_vet + weight_Chi_so_nguy_co_tu_duong_bien_gioi * _Chi_so_nguy_co_tu_duong_bien_gioi + weight_Lien_quan_den_Trung_Quoc * _Lien_quan_den_Trung_Quoc + weight_lien_quan_den_Lao * _lien_quan_den_Lao + weight_lien_quan_den_Campuchia * _lien_quan_den_Campuchia + weight_Chi_so_dap_ung_chinh_quyen * _Chi_so_dap_ung_chinh_quyen + weight_Chi_so_dap_ung_chinh_quyen_Tot * _Chi_so_dap_ung_chinh_quyen_Tot + weight_Chi_so_dap_ung_chinh_quyen_Trung_binh * _Chi_so_dap_ung_chinh_quyen_Trung_binh + weight_Chi_so_dap_ung_chinh_quyen_Yeu * _Chi_so_dap_ung_chinh_quyen_Yeu + weight_Chi_so_dong_mo_truong_hop * _Chi_so_dong_mo_truong_hop + weight_Chi_so_dong_mo_truong_hop_dong * _Chi_so_dong_mo_truong_hop_dong + weight_Chi_so_dong_mo_truong_hop_mo * _Chi_so_dong_mo_truong_hop_mo + weight_Chi_so_ho_tro * _Chi_so_ho_tro + weight_Ho_tro_nguoi_gia * _Ho_tro_nguoi_gia + weight_Ho_tro_nguoi_co_trieu_chung * _Ho_tro_nguoi_co_trieu_chung;
+		float result <- 0.0;
+		result <- result + weight_Chi_so_muc_do_nghiem_trong * (get_risk_F0());
+		result <- result + weight_Chi_so_nguy_co_xam_nhap * _Chi_so_nguy_co_xam_nhap;
+		result <- result + weight_Luu_tru * _Luu_tru;
+		result <- result + weight_Bien_gioi * _Bien_gioi;
+		result <- result + weight_Su_kien_dong_nguoi * _Su_kien_dong_nguoi;
+		result <- result + weight_Di_cu_lien_tinh * _Di_cu_lien_tinh;
+		result <- result + weight_Chi_so_nguy_co_ca_nhan * _Chi_so_nguy_co_ca_nhan;
+		result <- result + weight_Di_chuyen_nhieu * _Di_chuyen_nhieu;
+		result <- result + weight_Tiep_xuc_nhieu * _Tiep_xuc_nhieu;
+		result <- result + weight_Chi_so_nguy_co_moi_truong_xa_hoi * _Chi_so_nguy_co_moi_truong_xa_hoi;
+		result <- result + weight_Mat_do_dan_so * _Mat_do_dan_so;
+		result <- result + weight_TP_truc_thuoc_TW * _TP_truc_thuoc_TW;
+		result <- result + weight_Do_thi_khac * _Do_thi_khac;
+		result <- result + weight_Nong_thon * _Nong_thon;
+		result <- result + weight_Hoat_dong_kinh_te * _Hoat_dong_kinh_te;
+		result <- result + weight_Ky_tuc_xa * _Ky_tuc_xa;
+		result <- result + weight_Chi_so_nguy_co_suc_khoe_va_benh_ly_nen * _Chi_so_nguy_co_suc_khoe_va_benh_ly_nen;
+		result <- result + weight_Benh_nen_man_tinh * _Benh_nen_man_tinh;
+		result <- result + weight_Dan_so_gia * _Dan_so_gia;
+		result <- result + weight_Chi_so_nang_luc_ung_pho_Covid * _Chi_so_nang_luc_ung_pho_Covid;
+		result <- result + weight_So_nhan_vien_y_te_va_bac_sy_dan_so * _So_nhan_vien_y_te_va_bac_sy_dan_so;
+		result <- result + weight_So_giuong_benh * _So_giuong_benh;
+		result <- result + weight_So_may_tho * _So_may_tho;
+		result <- result + weight_So_co_so_y_te * _So_co_so_y_te;
+		result <- result + weight_So_ICU * _So_ICU;
+		result <- result + weight_Benh_vien_TW * _Benh_vien_TW;
+		result <- result + weight_Kham_tu_xa * _Kham_tu_xa;
+		result <- result + weight_So_may_PCR * _So_may_PCR;
+		result <- result + weight_Ty_le_BN_nguoi_dan_nghi_ngo_duoc_xet_nghiem_PCR * _Ty_le_BN_nguoi_dan_nghi_ngo_duoc_xet_nghiem_PCR;
+		result <- result + weight_Chi_so_giam_sat_phat_hien_truy_vet * _Chi_so_giam_sat_phat_hien_truy_vet;
+		result <- result + weight_Chi_so_nguy_co_tu_duong_bien_gioi * _Chi_so_nguy_co_tu_duong_bien_gioi;
+		result <- result + weight_Lien_quan_den_Trung_Quoc * _Lien_quan_den_Trung_Quoc;
+		result <- result + weight_lien_quan_den_Lao * _lien_quan_den_Lao;
+		result <- result + weight_lien_quan_den_Campuchia * _lien_quan_den_Campuchia;
+		result <- result + weight_Chi_so_dap_ung_chinh_quyen * _Chi_so_dap_ung_chinh_quyen;
+		result <- result + weight_Chi_so_dap_ung_chinh_quyen_Tot * _Chi_so_dap_ung_chinh_quyen_Tot;
+		result <- result + weight_Chi_so_dap_ung_chinh_quyen_Trung_binh * _Chi_so_dap_ung_chinh_quyen_Trung_binh;
+		result <- result + weight_Chi_so_dap_ung_chinh_quyen_Yeu * _Chi_so_dap_ung_chinh_quyen_Yeu;
+		result <- result + weight_Chi_so_dong_mo_truong_hop * _Chi_so_dong_mo_truong_hop;
+		result <- result + weight_Chi_so_dong_mo_truong_hop_dong * _Chi_so_dong_mo_truong_hop_dong;
+		result <- result + weight_Chi_so_dong_mo_truong_hop_mo * _Chi_so_dong_mo_truong_hop_mo;
+		result <- result + weight_Chi_so_ho_tro * _Chi_so_ho_tro;
+		result <- result + weight_Ho_tro_nguoi_gia * _Ho_tro_nguoi_gia;
+		result <- result + weight_Ho_tro_nguoi_co_trieu_chung * _Ho_tro_nguoi_co_trieu_chung;
+		return result;
 	}
 
 	float accessment18_04 {
@@ -108,7 +152,7 @@ species AdministrativeBound parent: EpidemiologicHost {
 
 	float get_risk_F0 {
 		return ((length(detected_cases_F0) + F1));
-//		return lst_risk_point[0];
+		//		return lst_risk_point[0];
 	}
 
 	float get_risk_personality {
